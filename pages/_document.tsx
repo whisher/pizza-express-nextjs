@@ -6,7 +6,11 @@ class PizzaExpressDocument extends Document {
       <Html lang="it">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cabin&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
             rel="stylesheet"
           ></link>
         </Head>
