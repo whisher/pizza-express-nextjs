@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 
-const Shop: NextPage = () => {
+const MyAccount: NextPage = () => {
   return (
     <div>
-      <h1>Shop Page</h1>
+      <h1>MyAccount Page</h1>
       <p>
         <Link href="/">
           <a>&larr; Go Back</a>
@@ -14,4 +14,4 @@ const Shop: NextPage = () => {
   );
 };
 
-export default Shop;
+export default MyAccount;

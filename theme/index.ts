@@ -35,12 +35,12 @@ const theme = extendTheme(
       Button: {
         // 1. We can update the base styles
         baseStyle: {
-          color: "orange.400", // Normally, it is "semibold"
+          color: "white", // Normally, it is "semibold"
         },
         // 3. We can add a new visual variant
         variants: {
           cart: {
-            bg: "white",
+            bg: "orange.400",
           },
         },
       },
