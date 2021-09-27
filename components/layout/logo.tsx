@@ -12,8 +12,8 @@ const Logo = () => {
         bgPosition="center"
         bgRepeat="no-repeat"
         mt={2}
-        w={24}
-        h={24}
+        w={[12, 24]}
+        h={[12, 24]}
       >
         Pizza Express
       </Link>
