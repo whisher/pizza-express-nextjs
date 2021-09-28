@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { useRouter } from "next/router";
 
 import { Container, Flex } from "@chakra-ui/react";
 import { Footer } from "./footer";
@@ -9,8 +8,6 @@ export interface MainProps {
   children: ReactNode;
 }
 const Main = ({ children }: MainProps) => {
-  const { pathname } = useRouter();
-  const isHome = pathname === "/";
   return (
     <Flex minHeight="100vh" direction="column">
       <Header />

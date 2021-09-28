@@ -14,6 +14,9 @@ const GlobalStyles = css`
     outline: none;
     box-shadow: none;
   }
+  .image {
+    border-radius: 0.375rem;
+  }
 `;
 const PizzaExpressApp = ({ Component, pageProps }: AppProps) => {
   return (

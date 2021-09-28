@@ -18,7 +18,7 @@ const Header = () => {
       <Logo />
 
       <Flex alignItems="center" justifyContent="space-between">
-        <Box pr={20}>
+        <Box mr={[0, 20]}>
           <Nav />
         </Box>
         <Cart />
