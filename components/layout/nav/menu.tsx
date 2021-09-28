@@ -8,7 +8,7 @@ const Menu = () => {
       as="ul"
       alignItems="center"
       style={{
-        listStyle: "none",
+        listStyle: "none"
       }}
     >
       <MenuItem to="/">Home</MenuItem>
@@ -23,6 +23,10 @@ const Menu = () => {
             variant="outline"
             size="sm"
             as="a"
+            _hover={{
+              background: "white",
+              color: "primary.400"
+            }}
           >
             Login
           </Button>
@@ -36,6 +40,11 @@ const Menu = () => {
             variant="outline"
             size="sm"
             as="a"
+            _hover={{
+              background: "white",
+              color: "secondary.400",
+              borderColor: "white"
+            }}
           >
             Registrati
           </Button>
