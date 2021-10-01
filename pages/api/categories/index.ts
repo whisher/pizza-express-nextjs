@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { ErrorDto, CategoryWithProductsDto } from "../../../types";
+import type { CategoryDto, ErrorDto } from "../../../types";
 
 import { prisma } from "../../../util";
 
@@ -9,8 +9,9 @@ const selectFields = {
   products: {
     select: {
       id: true,
-      name: true,
       image: true,
+      description: true,
+      name: true,
       price: true,
       slug: true
     }
@@ -19,7 +20,7 @@ const selectFields = {
 
 const getCategoriesWithProducts = async (
   req: NextApiRequest,
-  res: NextApiResponse<ErrorDto | CategoryWithProductsDto[]>
+  res: NextApiResponse<ErrorDto | CategoryDto[]>
 ) => {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed." });

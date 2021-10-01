@@ -1,22 +1,22 @@
 import type { GetServerSideProps, NextPage } from "next";
 
-import { useEffect } from "react";
-import Link from "next/link";
-import { Box, Flex } from "@chakra-ui/react";
+import Head from "next/head";
+import { Flex } from "@chakra-ui/react";
 
-import type { CategoryWithProductsDto, ProductDto } from "../types";
+import type { CategoryWithProductsDto } from "../../types";
 
-import axios from "../util/axios";
+import axios from "../../util/axios";
 
-import { useCategoryWithProducts } from "../hooks/categoryWithProducts";
-import { ButtonGroup } from "../components/ui/button-group";
-import { Product } from "../components/ui/product";
+import { useCategoryWithProducts } from "../../hooks/categoryWithProducts";
+import { ButtonGroup } from "../../components/ui/button-group";
+import { Products } from "../../components/ui/products";
 
 type ShopPageProps = {
   data: CategoryWithProductsDto[];
 };
 
 const Shop: NextPage<ShopPageProps> = ({ data }: ShopPageProps) => {
+  const title = `${process.env.NEXT_PUBLIC_SITE_NAME} - Shop`;
   const { categories, getFilterProducts, products } =
     useCategoryWithProducts(data);
 
@@ -25,14 +25,13 @@ const Shop: NextPage<ShopPageProps> = ({ data }: ShopPageProps) => {
   };
   return (
     <>
-      <Flex justifyContent="flex-end" mt={12} mb={8}>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Flex justifyContent="flex-end" mt={4} mb={8}>
         <ButtonGroup labels={categories} onClick={onSelectCategory} />
       </Flex>
-      {products.map((product) => (
-        <Box mb={2} key={product.id}>
-          <Product product={product} />
-        </Box>
-      ))}
+      <Products products={products} />
     </>
   );
 };

@@ -1,31 +1,17 @@
 import type { NextPage } from "next";
 import NextLink from "next/link";
-import { Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { MdShoppingCart } from "react-icons/md";
+import { Heading, Text } from "../components/ui/typography";
 const Home: NextPage = () => {
   return (
-    <Flex direction="column" alignItems="center">
-      <Heading
-        as="h2"
-        fontSize="5xl"
-        mb={2}
-        color="white"
-        mt={{ base: "0", md: "5rem" }}
-      >
-        Pizza Express
-      </Heading>
-
-      <Text as="p" fontSize="3xl" color="white">
-        La pizza a domicilio, cotta al forno a legna.
-      </Text>
-      <Text as="p" fontSize="3xl" color="white">
-        Portiamo a casa tua tutta la bontà della pizza
-      </Text>
-      <Text as="p" mb={4} fontSize="3xl" color="white">
-        artigianale ad alta digeribilità.
-      </Text>
+    <Flex as="section" direction="column" alignItems="center">
+      <Heading>Pizza Express</Heading>
+      <Text>La pizza a domicilio, cotta al forno a legna.</Text>
+      <Text>Portiamo a casa tua tutta la bontà della pizza</Text>
+      <Text>artigianale ad alta digeribilità.</Text>
       <NextLink href="/shop" passHref>
-        <Button rightIcon={<MdShoppingCart />} size="lg" as="a">
+        <Button as="a" rightIcon={<MdShoppingCart />} size="lg" mt={4}>
           Compra
         </Button>
       </NextLink>

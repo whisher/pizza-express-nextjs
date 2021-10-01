@@ -1,38 +1,34 @@
 import type { NextPage } from "next";
+import Head from "next/head";
 import NextLink from "next/link";
-import { Button, Flex, Heading, Text } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { MdShoppingCart } from "react-icons/md";
-
+import { Heading, Text } from "../components/ui/typography";
 const About: NextPage = () => {
+  const title = `${process.env.NEXT_PUBLIC_SITE_NAME} - Chi Siamo`;
   return (
-    <Flex direction="column" alignItems="center">
-      <Heading
-        as="h2"
-        fontSize="5xl"
-        mb={2}
-        color="white"
-        mt={{ base: "0", md: "5rem" }}
-      >
-        Pizza Express
-      </Heading>
-
-      <Text as="p" fontSize="2xl" color="white">
-        Ogni giorno Pizza express sforna tante pizze preparate con ingredienti
-        stagionali.
-      </Text>
-      <Text as="p" fontSize="2xl" color="white">
-        Siamo aperti tutta la settimana, 7 su 7, pronti a preparare la tua pizza
-        preferita.
-      </Text>
-      <Text as="p" mb={4} fontSize="2xl" color="white">
-        Consegniamo a domicilio tutti i giorni.
-      </Text>
-      <NextLink href="/shop" passHref>
-        <Button rightIcon={<MdShoppingCart />} size="lg" as="a">
-          Compra
-        </Button>
-      </NextLink>
-    </Flex>
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Flex as="section" direction="column" alignItems="center">
+        <Heading>Pizza Express</Heading>
+        <Text>
+          Ogni giorno Pizza express sforna tante pizze preparate con ingredienti
+          stagionali.
+        </Text>
+        <Text>
+          Siamo aperti tutta la settimana, 7 su 7, pronti a preparare la tua
+          pizza preferita.
+        </Text>
+        <Text>Consegniamo a domicilio tutti i giorni.</Text>
+        <NextLink href="/shop" passHref>
+          <Button as="a" rightIcon={<MdShoppingCart />} size="lg" mt={4}>
+            Compra
+          </Button>
+        </NextLink>
+      </Flex>
+    </>
   );
 };
 

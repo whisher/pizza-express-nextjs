@@ -15,6 +15,7 @@ const GlobalStyles = css`
     box-shadow: none;
   }
   .image {
+    background-color: #efefef;
     border-radius: 0.375rem;
   }
 `;
@@ -24,8 +25,11 @@ const PizzaExpressApp = ({ Component, pageProps }: AppProps) => {
       <Global styles={GlobalStyles} />
       <Layout>
         <Head>
-          <title>Pizza Express</title>
-          <meta name="description" content="Pizza Express" />
+          <title>{process.env.NEXT_PUBLIC_SITE_TITLE}</title>
+          <meta
+            name="description"
+            content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
+          />
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"

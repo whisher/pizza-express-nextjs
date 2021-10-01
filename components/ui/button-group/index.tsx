@@ -13,7 +13,6 @@ const ButtonGroup = ({ onClick, labels }: ButtonGroupProps) => {
     onClick(label);
   };
   const setColor = (label: string) => {
-    console.log(label === current ? "white" : "black");
     return label === current ? "secondary.400" : "white";
   };
 
