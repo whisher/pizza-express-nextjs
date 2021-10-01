@@ -4,6 +4,7 @@ import Image, { ImageLoaderProps } from "next/image";
 import { Box, Flex, Heading, LinkBox, LinkOverlay } from "@chakra-ui/react";
 
 import type { ProductDto } from "../../../../types";
+import { useCart } from "../../../../hooks/cart";
 import { Counter } from "../../counter";
 
 const productImageloader = ({ src, width, quality }: ImageLoaderProps) => {
@@ -19,7 +20,18 @@ export interface ProductProps {
 const Product = ({ product }: ProductProps) => {
   const src = `/images/products/${product.image}`;
   const url = `/shop/${product.slug}`;
-  const handlerCounter = (value: number) => {};
+  const { id, name, price } = product;
+  const cart = useCart((state) => ({
+    quantity: state.cart[id]?.quantity || 0,
+    addItem: state.addItem,
+    removeItem: state.removeItem
+  }));
+  const handlerMinus = () => {
+    cart.removeItem(id);
+  };
+  const handlerPlus = () => {
+    cart.addItem({ id, name, price });
+  };
   return (
     <Flex
       as="article"
@@ -55,7 +67,11 @@ const Product = ({ product }: ProductProps) => {
         <Box py="8">{product.description}</Box>
         <Flex alignItems="center" justifyContent="space-between">
           <Box fontSize="xl">Quante ne vuoi?</Box>
-          <Counter handler={handlerCounter} />
+          <Counter
+            value={cart.quantity}
+            handlerMinus={handlerMinus}
+            handlerPlus={handlerPlus}
+          />
         </Flex>
       </Box>
     </Flex>

@@ -16,7 +16,7 @@ type ShopPageProps = {
 };
 
 const Shop: NextPage<ShopPageProps> = ({ data }: ShopPageProps) => {
-  const title = `${process.env.NEXT_PUBLIC_SITE_NAME} - Shop`;
+  const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Shop`;
   const { categories, getFilterProducts, products } =
     useCategoryWithProducts(data);
 

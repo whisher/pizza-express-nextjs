@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from "react";
+import React from "react";
 import { Box, IconButton, Flex } from "@chakra-ui/react";
 import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 
@@ -7,57 +7,13 @@ export interface CounterState {
 }
 export interface CounterProps {
   color?: string;
-  value?: number | string;
-  handler: (value: number) => void;
+  value: number | string;
+  handlerMinus: () => void;
+  handlerPlus: () => void;
 }
 
-enum Action {
-  MINUS = "MINUS",
-  PLUS = "PLUS",
-  RESET = "RESET"
-}
-type Actions =
-  | { type: Action.MINUS }
-  | { type: Action.PLUS }
-  | { type: Action.RESET };
-
-const initialCounterState: CounterState = { value: 0 };
-
-const reducer = (state: CounterState, action: Actions): CounterState => {
-  switch (action.type) {
-    case Action.MINUS:
-      return { value: state.value > 0 ? state.value - 1 : state.value };
-    case Action.PLUS:
-      return { value: state.value + 1 };
-    case Action.RESET:
-      return { value: 0 };
-    default:
-      return state;
-  }
-};
-
-const Counter = ({ color, value, handler }: CounterProps) => {
-  if (value) {
-    initialCounterState.value = Number(value);
-  }
-  const [state, dispatch] = useReducer(reducer, initialCounterState);
-  const firstMounded = useRef(true);
+const Counter = ({ color, value, handlerMinus, handlerPlus }: CounterProps) => {
   const c = color ?? "gray.500";
-
-  useEffect(() => {
-    if (!firstMounded.current) {
-      handler(state.value);
-    }
-    firstMounded.current = false;
-  }, [handler, state]);
-
-  const handlerMinus = () => {
-    dispatch({ type: Action.MINUS });
-  };
-
-  const handlerPlus = async () => {
-    dispatch({ type: Action.PLUS });
-  };
 
   return (
     <Flex
@@ -87,7 +43,7 @@ const Counter = ({ color, value, handler }: CounterProps) => {
         }}
       />
       <Box px="8" fontFamily="Menlo" fontSize="xl">
-        {state.value}
+        {value}
       </Box>
       <IconButton
         onClick={handlerPlus}

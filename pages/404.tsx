@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { Box } from "@chakra-ui/react";
 const JustEat404: NextPage = () => {
-  const title = `${process.env.NEXT_PUBLIC_SITE_NAME} - 404`;
+  const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - 404`;
   return (
     <>
       <Head>

@@ -1,11 +1,19 @@
 import React from "react";
 import { IconButton } from "@chakra-ui/react";
 import { HiShoppingCart } from "react-icons/hi";
+import { useCart } from "../../../hooks/cart";
+import { cartQuantity } from "../../../util/cart";
+
 import { CartBadge } from "./badge";
 const Cart = () => {
-  const num = 0;
+  const cart = useCart((state) => ({
+    cart: state.cart,
+    addItem: state.addItem,
+    removeItem: state.removeItem
+  }));
+  const quantity = cartQuantity(cart.cart);
   return (
-    <CartBadge num={num}>
+    <CartBadge num={quantity}>
       <IconButton
         variant="cart"
         aria-label="Cart"
