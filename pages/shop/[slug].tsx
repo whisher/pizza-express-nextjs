@@ -26,15 +26,15 @@ const ShopPageWithSlug: NextPage<ShopPageWithSlugProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.query.slug;
-  const res = await axios.get(`/api/products/${slug}`);
-  const data = await res.data;
-  if ("notfound" in data) {
-    return {
-      notFound: true
-    };
-  }
-  return { props: { data } };
+  try {
+    const slug = context.query.slug;
+    const res = await axios.get(`/api/products/${slug}`);
+    const data = await res.data;
+    return { props: { data } };
+  } catch (error) {}
+  return {
+    notFound: true
+  };
 };
 
 export default ShopPageWithSlug;

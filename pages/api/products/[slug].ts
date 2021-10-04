@@ -33,7 +33,7 @@ const getProducts = async (
     }
   }
 
-  return res.status(200).json({ notfound: 404 });
+  return res.status(404).json({ message: "Not Found" });
 };
 
 export default getProducts;

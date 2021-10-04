@@ -24,7 +24,7 @@ const About: NextPage = () => {
         <Text>Consegniamo a domicilio tutti i giorni.</Text>
         <NextLink href="/shop" passHref>
           <Button as="a" rightIcon={<MdShoppingCart />} size="lg" mt={4}>
-            Compra
+            Ordina
           </Button>
         </NextLink>
       </Flex>

@@ -6,6 +6,7 @@ import { Box, Flex, Heading, LinkBox, LinkOverlay } from "@chakra-ui/react";
 import type { ProductDto } from "../../../../types";
 import { useCart } from "../../../../hooks/cart";
 import { Counter } from "../../counter";
+import { formatMoney } from "../../../../util/format";
 
 const productImageloader = ({ src, width, quality }: ImageLoaderProps) => {
   return `${process.env.NEXT_PUBLIC_BASE_URL}/${src}?w=${width}&q=${
@@ -34,6 +35,7 @@ const Product = ({ product }: ProductProps) => {
   };
   return (
     <Flex
+      direction={["column", "row"]}
       as="article"
       alignItems="center"
       justifyContent="space-between"
@@ -43,7 +45,7 @@ const Product = ({ product }: ProductProps) => {
       boxShadow="2xl"
       rounded="md"
     >
-      <LinkBox pos="relative" w={[100, 250]} h={[100, 250]}>
+      <LinkBox pos="relative" w={["full", 250]} h={[150, 250]}>
         <NextLink href={url} passHref>
           <LinkOverlay>
             <Image
@@ -57,16 +59,22 @@ const Product = ({ product }: ProductProps) => {
           </LinkOverlay>
         </NextLink>
       </LinkBox>
-      <Box flex="1" h="full" px="8">
-        <Flex alignItems="center" justifyContent="space-between">
+      <Box flex="1" h="full" px={["4", "8"]}>
+        <Flex alignItems="center" justifyContent="space-between" mt={[2, 0]}>
           <Heading as="h2">{product.name}</Heading>
           <Box fontFamily="Menlo" fontSize="xl" fontWeight="bold">
-            {product.price}€
+            {formatMoney(product.price)}
           </Box>
         </Flex>
-        <Box py="8">{product.description}</Box>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Box fontSize="xl">Quante ne vuoi?</Box>
+        <Box py={["2", "8"]}>{product.description}</Box>
+        <Flex
+          direction={["column", "row"]}
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box fontSize="xl" mb={[2, 0]}>
+            Quante ne vuoi?
+          </Box>
           <Counter
             value={cart.quantity}
             handlerMinus={handlerMinus}

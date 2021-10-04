@@ -25,18 +25,20 @@ const getCategoriesWithProducts = async (
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed." });
   }
-
-  const categories = await prisma.category.findMany({
-    where: {
-      products: { some: {} }
-    },
-    select: selectFields,
-    orderBy: {
-      name: "asc"
-    }
-  });
-
-  return res.status(200).json(categories);
+  try {
+    const categories = await prisma.category.findMany({
+      where: {
+        products: { some: {} }
+      },
+      select: selectFields,
+      orderBy: {
+        name: "asc"
+      }
+    });
+    return res.status(200).json(categories);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
 };
 
 export default getCategoriesWithProducts;
