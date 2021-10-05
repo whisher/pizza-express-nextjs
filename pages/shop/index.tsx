@@ -9,6 +9,7 @@ import axios from "../../util/axios";
 
 import { useCategoryWithProducts } from "../../hooks/categoryWithProducts";
 import { ButtonGroup } from "../../components/ui/button-group";
+import { NoData } from "../../components/ui/nodata";
 import { Products } from "../../components/ui/products";
 
 type ShopPageProps = {
@@ -16,31 +17,41 @@ type ShopPageProps = {
 };
 
 const Shop: NextPage<ShopPageProps> = ({ data }: ShopPageProps) => {
-  const title = `${process.env.NEXT_PUBLIC_SITE_NAME} - Shop`;
+  const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Shop`;
   const { categories, getFilterProducts, products } =
     useCategoryWithProducts(data);
 
   const onSelectCategory = (label: string) => {
     getFilterProducts(label);
   };
+  const hasProducts = products.length > 0;
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <Flex justifyContent="flex-end" mt={4} mb={8}>
-        <ButtonGroup labels={categories} onClick={onSelectCategory} />
-      </Flex>
-      <Products products={products} />
+      {hasProducts ? (
+        <Flex justifyContent="flex-end" mt={4} mb={8}>
+          <ButtonGroup labels={categories} onClick={onSelectCategory} />
+        </Flex>
+      ) : null}
+      {hasProducts ? (
+        <Products products={products} />
+      ) : (
+        <NoData>Al monento pizze non disponibili :(</NoData>
+      )}
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await axios.get("/api/categories");
-  const data = await res.data;
-
-  return { props: { data } };
+  try {
+    const res = await axios.get("/api/categories");
+    const data = await res.data;
+    return { props: { data } };
+  } catch (error) {
+    return { props: { data: [] } };
+  }
 };
 
 export default Shop;

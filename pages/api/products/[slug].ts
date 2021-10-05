@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { ErrorDto, ProductDto } from "../../../types";
+import type { ErrorDto, NotFoundDto, ProductDto } from "../../../types";
 
 import { prisma } from "../../../util";
 
@@ -15,7 +15,7 @@ const selectFields = {
 
 const getProducts = async (
   req: NextApiRequest,
-  res: NextApiResponse<ErrorDto | ProductDto>
+  res: NextApiResponse<ErrorDto | NotFoundDto | ProductDto>
 ) => {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed." });
@@ -33,7 +33,7 @@ const getProducts = async (
     }
   }
 
-  return res.status(404).json({ message: "Product not found." });
+  return res.status(404).json({ message: "Not Found" });
 };
 
 export default getProducts;

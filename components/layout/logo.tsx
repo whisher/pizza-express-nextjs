@@ -1,22 +1,20 @@
 import React from "react";
+import NextLink from "next/link";
 import Image from "next/image";
-import { Box, Heading, Link } from "@chakra-ui/react";
+
+import { Heading, LinkBox, LinkOverlay } from "@chakra-ui/react";
 
 const Logo = () => {
+  const src = "/images/logo.png";
   return (
-    <Heading as="h1" fontSize={0}>
-      <Link
-        href="/"
-        d="block"
-        bgImage="url('/images/logo.png')"
-        bgPosition="center"
-        bgRepeat="no-repeat"
-        mt={2}
-        w={[12, 24]}
-        h={[12, 24]}
-      >
-        Pizza Express
-      </Link>
+    <Heading as="h1">
+      <LinkBox mt={4}>
+        <NextLink href={"/"} passHref>
+          <LinkOverlay>
+            <Image src={src} alt="Pizza Express" width="150px" height="150px" />
+          </LinkOverlay>
+        </NextLink>
+      </LinkBox>
     </Heading>
   );
 };

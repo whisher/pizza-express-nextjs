@@ -5,7 +5,7 @@ import { Button, Flex } from "@chakra-ui/react";
 import { MdShoppingCart } from "react-icons/md";
 import { Heading, Text } from "../components/ui/typography";
 const About: NextPage = () => {
-  const title = `${process.env.NEXT_PUBLIC_SITE_NAME} - Chi Siamo`;
+  const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Chi Siamo`;
   return (
     <>
       <Head>
@@ -24,7 +24,7 @@ const About: NextPage = () => {
         <Text>Consegniamo a domicilio tutti i giorni.</Text>
         <NextLink href="/shop" passHref>
           <Button as="a" rightIcon={<MdShoppingCart />} size="lg" mt={4}>
-            Compra
+            Ordina
           </Button>
         </NextLink>
       </Flex>

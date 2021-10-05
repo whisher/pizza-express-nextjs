@@ -1,7 +1,9 @@
+import { Prisma as PrismaOrm } from "@prisma/client";
+
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ErrorDto, UserResponseDto } from "../../../types";
 
-import { prisma } from "../../../util/prisma";
+import prisma from "../../../util/prisma";
 import { hashPassword } from "../../../util/auth";
 
 const userRegister = async (
@@ -20,12 +22,11 @@ const userRegister = async (
 
     return res.status(200).json({ id, email });
   } catch (error) {
-    const er = error as { code: string };
-    if (er.code === "P2002") {
-      return res.status(200).json({ message: "Account already exists." });
+    if (error instanceof PrismaOrm.PrismaClientKnownRequestError) {
+      if (error.code === "P2002") {
+        return res.status(200).json({ message: "Account already exists." });
+      }
     }
-
-    // Log the error
     return res.status(400).json({ message: "Something went wrong." });
   }
 };

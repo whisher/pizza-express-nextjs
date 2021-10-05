@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       <Text>artigianale ad alta digeribilità.</Text>
       <NextLink href="/shop" passHref>
         <Button as="a" rightIcon={<MdShoppingCart />} size="lg" mt={4}>
-          Compra
+          Ordina
         </Button>
       </NextLink>
     </Flex>

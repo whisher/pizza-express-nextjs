@@ -29,7 +29,9 @@ const ButtonGroup = ({ onClick, labels }: ButtonGroupProps) => {
             variant="outline"
             size="md"
             _hover={{
-              background: "white",
+              color: "primary.400"
+            }}
+            _active={{
               color: "primary.400"
             }}
           >
