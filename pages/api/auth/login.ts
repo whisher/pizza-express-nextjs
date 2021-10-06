@@ -12,7 +12,6 @@ const userLogin = async (
   }
 
   const { email, password } = req.body;
-
   try {
     const user = await prisma.user.findFirst({
       where: {

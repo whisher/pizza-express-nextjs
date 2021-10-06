@@ -45,17 +45,19 @@ const Product = ({ product }: ProductProps) => {
       boxShadow="2xl"
       rounded="md"
     >
-      <LinkBox pos="relative" w={["full", 250]} h={[150, 250]}>
+      <LinkBox>
         <NextLink href={url} passHref>
           <LinkOverlay>
-            <Image
-              className="image"
-              loader={productImageloader}
-              src={src}
-              alt={product.name}
-              layout="fill"
-              objectFit="contain"
-            />
+            <Box pos="relative" w={["full", 250]} h={[150, 250]}>
+              <Image
+                className="image"
+                loader={productImageloader}
+                src={src}
+                alt={product.name}
+                layout="fill"
+                objectFit="contain"
+              />
+            </Box>
           </LinkOverlay>
         </NextLink>
       </LinkBox>

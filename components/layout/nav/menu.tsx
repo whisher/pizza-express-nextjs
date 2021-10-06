@@ -15,7 +15,7 @@ const Menu = () => {
       <MenuItem to="/chi-siamo">Chi Siamo</MenuItem>
       <MenuItem to="/shop">Shop</MenuItem>
       <ButtonGroup spacing="4">
-        <NextLink href="/mio-account" passHref>
+        <NextLink href="/auth/login" passHref>
           <Button
             border="1px"
             color="white"
@@ -31,7 +31,7 @@ const Menu = () => {
             Login
           </Button>
         </NextLink>
-        <NextLink href="/mio-account" passHref>
+        <NextLink href="/auth/registrati" passHref>
           <Button
             border="1px"
             color="white"
