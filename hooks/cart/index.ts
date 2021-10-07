@@ -10,12 +10,13 @@ interface CartState {
 export const useCart = create<CartState>(
   devtools((set) => ({
     cart: {},
-    addItem: ({ id, name, price }) => {
+    addItem: ({ id, image, name, price }) => {
       set((state) => {
         const cart = { ...state.cart };
         if (!cart[id]) {
           cart[id] = {
             id,
+            image,
             name,
             price,
             quantity: 0

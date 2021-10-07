@@ -21,7 +21,7 @@ export interface ProductProps {
 const Product = ({ product }: ProductProps) => {
   const src = `/images/products/${product.image}`;
   const url = `/shop/${product.slug}`;
-  const { id, name, price } = product;
+  const { id, image, name, price } = product;
   const cart = useCart((state) => ({
     quantity: state.cart[id]?.quantity || 0,
     addItem: state.addItem,
@@ -31,7 +31,7 @@ const Product = ({ product }: ProductProps) => {
     cart.removeItem(id);
   };
   const handlerPlus = () => {
-    cart.addItem({ id, name, price });
+    cart.addItem({ id, image, name, price });
   };
   return (
     <Flex
