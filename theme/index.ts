@@ -40,12 +40,13 @@ const theme = extendTheme(
         // 3. We can add a new visual variant
         variants: {
           cart: {
-            bg: "orange.400"
+            bg: "primary.400"
           }
         }
       },
       Link: {
         baseStyle: {
+          color: "primary.400",
           _hover: {
             textDecoration: "none"
           }

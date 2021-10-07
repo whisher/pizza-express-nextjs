@@ -1,4 +1,5 @@
-export interface LoginDto {
+export interface AccountDto {
+  acceptTerms?: boolean;
   email: string;
   password: string;
 }
