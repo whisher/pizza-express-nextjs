@@ -1,15 +1,24 @@
-import React, { ReactNode } from "react";
-import { Box } from "@chakra-ui/react";
+import React from "react";
+import { useCart } from "../../../../hooks/cart";
+import { CheckoutCartEmpty } from "./empty";
+import { CheckoutCartItems } from "./items";
+import { cartQuantity, cartTotal } from "../../../../util/cart";
 
-export interface CheckoutCartProps {
-  children: ReactNode;
-}
-
-const CheckoutCart = ({ children }: CheckoutCartProps) => {
+const CheckoutCart = () => {
+  const cart = useCart((state) => ({
+    cart: state.cart
+  }));
+  const quantity = cartQuantity(cart.cart);
+  const total = cartTotal(cart.cart);
+  const hasProducts = quantity > 0;
   return (
-    <Box flex="1" bg="red.400">
-      {children}
-    </Box>
+    <>
+      {hasProducts ? (
+        <CheckoutCartItems cart={cart.cart} quantity={quantity} total={total} />
+      ) : (
+        <CheckoutCartEmpty>Nessun prodotto nel carrello.</CheckoutCartEmpty>
+      )}
+    </>
   );
 };
 

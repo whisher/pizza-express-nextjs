@@ -1,7 +1,8 @@
 import React from "react";
-import type { CartDto } from "../../../../../types";
 import { Box, Flex } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
+import type { CartDto } from "../../../../../types";
+import { Counter } from "../../../counter";
 import { formatMoney } from "../../../../../util/format";
 
 export interface CheckoutCartItemProps {
@@ -23,6 +24,11 @@ const CheckoutCartItem = ({ cart }: CheckoutCartItemProps) => {
           />
         </Box>
         <Box fontSize={["lg", "xl"]}>{cart.name}</Box>
+        <Counter
+          value={cart.quantity}
+          handlerMinus={handlerMinus}
+          handlerPlus={handlerPlus}
+        />
         <Box>
           {cart.quantity} X {priceFormatMoney}
         </Box>

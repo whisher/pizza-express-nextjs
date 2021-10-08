@@ -1,14 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
-import {
-  Box,
-  Button,
-  Flex,
-  MenuDivider,
-  MenuItem,
-  MenuList
-} from "@chakra-ui/react";
-import type { CartDto } from "../../../../types";
+import { Box, Button, Flex } from "@chakra-ui/react";
+import type { CartDto } from "../../../../../types";
 import { CheckoutCartItem } from "../item";
 import { formatMoney } from "../../../../../util/format";
 
@@ -18,7 +11,7 @@ export interface CartItemsProps {
   total: number;
 }
 
-const CartItems = ({ cart, quantity, total }: CartItemsProps) => {
+const CheckoutCartItems = ({ cart, quantity, total }: CartItemsProps) => {
   const router = useRouter();
   const labelQuantity = quantity > 1 ? "Pizze" : "Pizza";
   const totalFormatMoney = formatMoney(total);
@@ -27,11 +20,11 @@ const CartItems = ({ cart, quantity, total }: CartItemsProps) => {
     router.push("/shop/checkout");
   };
   return (
-    <>
+    <Flex flex="1" direction="column">
       <Flex
-        flex="1"
         alignItems="center"
         justifyContent="space-between"
+        bg="white"
         color="gray.400"
         fontSize="lg"
         fontWeight="semibold"
@@ -71,8 +64,8 @@ const CartItems = ({ cart, quantity, total }: CartItemsProps) => {
           Checkout
         </Button>
       </Box>
-    </>
+    </Flex>
   );
 };
 
-export { CartItems };
+export { CheckoutCartItems };
