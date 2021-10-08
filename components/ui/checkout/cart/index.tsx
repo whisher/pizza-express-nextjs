@@ -1,22 +1,16 @@
 import React, { ReactNode } from "react";
-import { Heading as H } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
-export interface HeadingProps {
+export interface CheckoutCartProps {
   children: ReactNode;
 }
 
-const Heading = ({ children }: HeadingProps) => {
+const CheckoutCart = ({ children }: CheckoutCartProps) => {
   return (
-    <H
-      as="h2"
-      fontSize={["3xl", "5xl"]}
-      mb={2}
-      color="white"
-      mt={{ base: "0", md: "3rem" }}
-    >
+    <Box flex="1" bg="red.400">
       {children}
-    </H>
+    </Box>
   );
 };
 
-export { Heading };
+export { CheckoutCart };

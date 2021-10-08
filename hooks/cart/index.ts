@@ -48,6 +48,11 @@ export const useCart = create<CartState>(
 
             return { cart };
           });
+        },
+        reset: () => {
+          set(() => {
+            return {};
+          });
         }
       }),
       {

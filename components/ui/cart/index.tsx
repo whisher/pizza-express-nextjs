@@ -10,9 +10,7 @@ import { cartQuantity, cartTotal } from "../../../util/cart";
 import { CartBadge } from "./badge";
 const Cart = () => {
   const cart = useCart((state) => ({
-    cart: state.cart,
-    addItem: state.addItem,
-    removeItem: state.removeItem
+    cart: state.cart
   }));
   const quantity = cartQuantity(cart.cart);
   const total = cartTotal(cart.cart);
