@@ -48,7 +48,7 @@ const Product = ({ product }: ProductProps) => {
       <LinkBox>
         <NextLink href={url} passHref>
           <LinkOverlay>
-            <Box pos="relative" w={["full", 250]} h={[150, 250]}>
+            <Box pos="relative" w={[150, 250]} h={[150, 250]}>
               <Image
                 className="image"
                 loader={productImageloader}

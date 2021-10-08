@@ -1,13 +1,8 @@
 import React from "react";
-import Image, { ImageLoaderProps } from "next/image";
-import { Box, Flex, MenuItem } from "@chakra-ui/react";
 import type { CartDto } from "../../../../types";
-
-const productImageloader = ({ src, width, quality }: ImageLoaderProps) => {
-  return `${process.env.NEXT_PUBLIC_BASE_URL}/${src}?w=${width}&q=${
-    quality || 75
-  }`;
-};
+import { Box, Flex, MenuItem } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
+import { formatMoney } from "../../../../util/format";
 
 export interface CartItemProps {
   cart: CartDto;
@@ -15,21 +10,23 @@ export interface CartItemProps {
 
 const CartItem = ({ cart }: CartItemProps) => {
   const src = `/images/products/`;
+  const priceFormatMoney = formatMoney(cart.price);
   return (
-    <MenuItem key={cart.id} _hover={{ bg: "white" }} _focus={{ bg: "white" }}>
-      <Flex alignItems="center" justifyContent="space-between">
-        <Box pos="relative" w={["full", 50]} h={[50, 100]}>
+    <MenuItem _hover={{ bg: "white" }} _focus={{ bg: "white" }}>
+      <Flex flex="1" alignItems="center" justifyContent="space-between">
+        <Box>
           <Image
-            className="image"
-            loader={productImageloader}
+            boxSize={["50px", "100px"]}
+            objectFit="contain"
             src={`${src}${cart.image}`}
             alt={cart.name}
-            layout="fill"
-            objectFit="contain"
           />
         </Box>
+        <Box fontSize={["lg", "xl"]}>{cart.name}</Box>
+        <Box>
+          {cart.quantity} X {priceFormatMoney}
+        </Box>
       </Flex>
-      <Box fontSize={["lg", "xl"]}>{cart.name}</Box>
     </MenuItem>
   );
 };
