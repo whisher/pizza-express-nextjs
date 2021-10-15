@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Divider, Flex } from "@chakra-ui/react";
 import type { CartDto } from "../../../../../types";
 import { CheckoutCartItem } from "../item";
 import { formatMoney } from "../../../../../util/format";
@@ -25,45 +25,20 @@ const CheckoutCartItems = ({ cart, quantity, total }: CartItemsProps) => {
         alignItems="center"
         justifyContent="space-between"
         bg="white"
-        color="gray.400"
-        fontSize="lg"
+        fontSize="xlg"
         fontWeight="semibold"
+        px={[2, 4]}
+        py={[2, 4]}
       >
-        <Box>Total: {totalFormatMoney}</Box>
         <Box>
           {quantity} {labelQuantity}
         </Box>
+        <Box>Total: {totalFormatMoney}</Box>
       </Flex>
-
+      <Divider />
       {Object.keys(cart).map((product) => (
         <CheckoutCartItem key={product} cart={cart[product]} />
       ))}
-
-      <Box>
-        <Button
-          onClick={handleClick}
-          d="block"
-          w="full"
-          border="1px"
-          color="white"
-          bg="secondary.400"
-          borderColor="secondary.400"
-          variant="outline"
-          size="lg"
-          _hover={{
-            background: "secondary.400",
-            color: "white",
-            borderColor: "secondary.400"
-          }}
-          _active={{
-            background: "secondary.400",
-            color: "white",
-            borderColor: "secondary.400"
-          }}
-        >
-          Checkout
-        </Button>
-      </Box>
     </Flex>
   );
 };

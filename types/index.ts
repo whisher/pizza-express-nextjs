@@ -6,4 +6,4 @@ export type {
   CategoryWithProductsDto,
   ProductDto
 } from "./product";
-export type { UserResponseDto } from "./user";
+export type { UserResponseDto, UserDeliveryDto } from "./user";

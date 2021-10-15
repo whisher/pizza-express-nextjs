@@ -3,11 +3,13 @@ import { Flex } from "@chakra-ui/react";
 
 import { CheckoutCart } from "./cart";
 import { CheckoutForm } from "./form";
-
-const Checkout = () => {
+export interface CheckoutProps {
+  userId: string;
+}
+const Checkout = ({ userId }: CheckoutProps) => {
   return (
     <Flex direction={["column-reverse", "row"]}>
-      <CheckoutForm>Form</CheckoutForm>
+      <CheckoutForm userId={userId} />
       <CheckoutCart />
     </Flex>
   );

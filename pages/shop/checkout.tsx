@@ -3,7 +3,6 @@ import type { Session } from "next-auth";
 import { getSession } from "next-auth/client";
 
 import Head from "next/head";
-import { Flex } from "@chakra-ui/react";
 import { Checkout } from "../../components/ui/checkout";
 
 interface ShopCheckoutPageProps {
@@ -20,7 +19,7 @@ const ShopCheckout: NextPage<ShopCheckoutPageProps> = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <Checkout />
+      <Checkout userId={"ooo"} />
     </>
   );
 };

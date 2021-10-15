@@ -7,7 +7,7 @@ export interface CheckoutCartEmptyProps {
 
 const CheckoutCartEmpty = ({ children }: CheckoutCartEmptyProps) => {
   return (
-    <Center bg="white" fontSize={["xl", "2xl"]}>
+    <Center flex="1" bg="white" fontSize={["xl", "2xl"]}>
       {children}
     </Center>
   );
