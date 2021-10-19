@@ -13,13 +13,12 @@ const ShopCheckout: NextPage<ShopCheckoutPageProps> = ({
   session
 }: ShopCheckoutPageProps) => {
   const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Checkout`;
-  console.log("sesion server", session);
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <Checkout userId={"ooo"} />
+      <Checkout />
     </>
   );
 };

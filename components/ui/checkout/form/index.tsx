@@ -10,34 +10,35 @@ import {
 } from "@chakra-ui/react";
 import { HiCurrencyEuro } from "react-icons/hi";
 import { useForm } from "react-hook-form";
-import type { UserDeliveryDto } from "../../../../types";
+import { useSession } from "next-auth/client";
+
+import type { UserDeliveryRequestDto } from "../../../../types";
 import axios from "../../../../util/axios";
 
-const sendUserDelivery = (data: Omit<UserDeliveryDto, "id">) => {
-  return axios.post("/api/user", data);
+const sendUserDelivery = (data: UserDeliveryRequestDto) => {
+  return axios.post("/api/user/address", data);
 };
-export interface CheckoutFormProps {
-  userId: string;
-}
-const CheckoutForm = ({ userId }: CheckoutFormProps) => {
+
+const CheckoutForm = () => {
+  const [session] = useSession();
+
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<Omit<UserDeliveryDto, "id" | "userId">>();
+  } = useForm<Omit<UserDeliveryRequestDto, "email">>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const onSubmit = handleSubmit((data) => {
-    const { firstname, lastname, mobile, street, city } = data;
+    const { firstname, lastname, street, city } = data;
     setIsLoading(true);
     sendUserDelivery({
       firstname,
       lastname,
-      mobile,
       street,
       city,
-      userId
+      email: session?.user?.email
     })
       .then((res) => console.log(res))
       .catch(() => setError(true))
@@ -45,12 +46,12 @@ const CheckoutForm = ({ userId }: CheckoutFormProps) => {
         setIsLoading(false);
       });
   });
-  console.log(errors);
   return (
-    <Box bg="white" px={[2, 8, 16]}>
+    <Box>
       <Heading as="h2" py={[2, 4]} fontSize={["2xl", "3xl"]} textAlign="center">
         Consegna a:
       </Heading>
+
       <form onSubmit={onSubmit}>
         {error && (
           <Alert status="error" mb="2">
@@ -83,12 +84,6 @@ const CheckoutForm = ({ userId }: CheckoutFormProps) => {
             La città è obbligatoria
           </Alert>
         )}
-        {errors.mobile && (
-          <Alert status="error" mb="2">
-            <AlertIcon />
-            Il cellulare è obbligatorio
-          </Alert>
-        )}
         <Stack spacing={3}>
           <Input
             placeholder="Nome*"
@@ -114,11 +109,6 @@ const CheckoutForm = ({ userId }: CheckoutFormProps) => {
             placeholder="Città*"
             {...register("city", { required: true })}
           />
-          <Input
-            size="lg"
-            placeholder="Cellulare*"
-            {...register("mobile", { required: true })}
-          />
           {isLoading ? (
             <Button
               isLoading
@@ -128,7 +118,7 @@ const CheckoutForm = ({ userId }: CheckoutFormProps) => {
             ></Button>
           ) : (
             <Button size="lg" rightIcon={<HiCurrencyEuro />} type="submit">
-              Paga
+              Vai alla cassa
             </Button>
           )}
         </Stack>

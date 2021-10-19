@@ -27,7 +27,7 @@ const CheckoutCartItem = ({ cart }: CheckoutCartItemProps) => {
   };
   return (
     <>
-      <Flex px={[2, 4]} boxShadow="md" bg="white">
+      <Flex>
         <Image
           boxSize={["100px", "150px"]}
           objectFit="contain"

@@ -13,10 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { HiOutlineLockOpen } from "react-icons/hi";
 import { useForm } from "react-hook-form";
-import type { AccountDto } from "../../../../types";
+import type { UserLoginRequestDto } from "../../../../types";
 import axios from "../../../../util/axios";
 
-const sendLogin = (data: Omit<AccountDto, "password">) => {
+const sendLogin = (data: Omit<UserLoginRequestDto, "password">) => {
   return axios.post("/api/auth/forgotPassword", data);
 };
 const ForgotPassword = () => {
@@ -24,7 +24,7 @@ const ForgotPassword = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<Omit<AccountDto, "password">>();
+  } = useForm<Omit<UserLoginRequestDto, "password">>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const onSubmit = handleSubmit((data) => {

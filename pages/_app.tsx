@@ -19,7 +19,10 @@ const GlobalStyles = css`
     border-radius: 0.375rem;
   }
 `;
-const PizzaExpressApp = ({ Component, pageProps }: AppProps) => {
+const PizzaExpressApp = ({
+  Component,
+  pageProps: { ...pageProps }
+}: AppProps) => {
   return (
     <ChakraProvider theme={theme}>
       <Global styles={GlobalStyles} />

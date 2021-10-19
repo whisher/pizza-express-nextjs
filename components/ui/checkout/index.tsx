@@ -1,16 +1,18 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 import { CheckoutCart } from "./cart";
 import { CheckoutForm } from "./form";
-export interface CheckoutProps {
-  userId: string;
-}
-const Checkout = ({ userId }: CheckoutProps) => {
+
+const Checkout = () => {
   return (
-    <Flex direction={["column-reverse", "row"]}>
-      <CheckoutForm userId={userId} />
-      <CheckoutCart />
+    <Flex pb="4" direction={["column-reverse", "row"]} bg="white">
+      <Box flex="1" px={[4, 8]}>
+        <CheckoutForm />
+      </Box>
+      <Box flex="1" px={[4, 8]}>
+        <CheckoutCart />
+      </Box>
     </Flex>
   );
 };

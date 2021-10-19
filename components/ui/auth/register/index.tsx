@@ -15,10 +15,15 @@ import {
 } from "@chakra-ui/react";
 import { HiOutlineLockOpen } from "react-icons/hi";
 import { useForm } from "react-hook-form";
-import type { AccountDto } from "../../../../types";
+import type {
+  UserRegisterRequestDto,
+  UserRegisterResponseDto
+} from "../../../../types";
 import axios from "../../../../util/axios";
 
-const sendRegister = (data: AccountDto) => {
+const sendRegister = (
+  data: UserRegisterRequestDto
+): Promise<UserRegisterResponseDto> => {
   return axios.post("/api/auth/register", data);
 };
 const Register = () => {
@@ -26,15 +31,15 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<AccountDto>();
+  } = useForm<UserRegisterRequestDto>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [show, setShow] = useState(false);
   const handlePasswordVisibility = () => setShow(!show);
   const onSubmit = handleSubmit((data) => {
-    const { email, password } = data;
+    const { email, password, mobile } = data;
     setIsLoading(true);
-    sendRegister({ email, password })
+    sendRegister({ email, password, mobile })
       .then((res) => console.log(res))
       .catch(() => setError(true))
       .finally(() => {
@@ -66,6 +71,12 @@ const Register = () => {
             La password è obbligatoria
           </Alert>
         )}
+        {errors.mobile && (
+          <Alert status="error" mb="2">
+            <AlertIcon />
+            Il cellulare è obbligatorio
+          </Alert>
+        )}
         {errors.acceptTerms && (
           <Alert status="error" mb="2">
             <AlertIcon />
@@ -94,6 +105,13 @@ const Register = () => {
               </Button>
             </InputRightElement>
           </InputGroup>
+          <Input
+            placeholder="Cellulare*"
+            size="lg"
+            {...register("mobile", {
+              required: true
+            })}
+          />
           <Checkbox size="lg" {...register("acceptTerms", { required: true })}>
             Ho letto e accetto i termini e le condizioni
           </Checkbox>

@@ -16,9 +16,9 @@ import {
 } from "@chakra-ui/react";
 import { HiOutlineLockOpen } from "react-icons/hi";
 import { useForm } from "react-hook-form";
-import type { AccountDto } from "../../../../types";
+import type { UserLoginRequestDto } from "../../../../types";
 
-const login = async (data: AccountDto) => {
+const login = async (data: UserLoginRequestDto) => {
   const { email, password } = data;
   const result = await signIn("credentials", {
     redirect: false,
@@ -33,7 +33,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<AccountDto>();
+  } = useForm<UserLoginRequestDto>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [show, setShow] = useState(false);

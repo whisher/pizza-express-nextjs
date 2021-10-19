@@ -1,9 +1,11 @@
 import React from "react";
-import { useRouter } from "next/router";
+import NextLink from "next/link";
+
 import {
   Box,
   Button,
   Flex,
+  Link,
   MenuDivider,
   MenuItem,
   MenuList
@@ -19,13 +21,9 @@ export interface CartItemsProps {
 }
 
 const CartItems = ({ cart, quantity, total }: CartItemsProps) => {
-  const router = useRouter();
   const labelQuantity = quantity > 1 ? "Pizze" : "Pizza";
   const totalFormatMoney = formatMoney(total);
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    router.push("/shop/checkout");
-  };
+
   return (
     <MenuList w={["20rem", "25rem"]}>
       <MenuItem _hover={{ bg: "white" }} _focus={{ bg: "white" }}>
@@ -49,29 +47,20 @@ const CartItems = ({ cart, quantity, total }: CartItemsProps) => {
       ))}
       <MenuDivider></MenuDivider>
       <MenuItem _hover={{ bg: "white" }} _focus={{ bg: "white" }}>
-        <Button
-          onClick={handleClick}
-          d="block"
+        <Flex
+          alignItems="center"
+          justifyContent="center"
           w="full"
-          border="1px"
-          color="white"
+          py={[0, 2]}
+          borderRadius="md"
           bg="secondary.400"
-          borderColor="secondary.400"
-          variant="outline"
-          size="lg"
-          _hover={{
-            background: "secondary.400",
-            color: "white",
-            borderColor: "secondary.400"
-          }}
-          _active={{
-            background: "secondary.400",
-            color: "white",
-            borderColor: "secondary.400"
-          }}
         >
-          Checkout
-        </Button>
+          <NextLink href="/shop/checkout" passHref>
+            <Link color="white" fontSize="xl">
+              Checkout
+            </Link>
+          </NextLink>
+        </Flex>
       </MenuItem>
     </MenuList>
   );

@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { ErrorDto, UserResponseDto } from "../../../types";
+import type { ErrorDto, UserLoginResponseDto } from "../../../types";
 
 import { comparePassword, prisma } from "../../../util";
 
 const userLogin = async (
   req: NextApiRequest,
-  res: NextApiResponse<ErrorDto | UserResponseDto>
+  res: NextApiResponse<ErrorDto | UserLoginResponseDto>
 ) => {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed." });
@@ -33,7 +33,6 @@ const userLogin = async (
     }
 
     return res.status(200).json({
-      id: user.id,
       email: user.email
     });
   } catch (error) {

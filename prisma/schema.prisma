@@ -19,7 +19,7 @@ model Product {
   image       String
   name        String
   price       Int
-  slug        String @unique
+  slug        String   @unique
   categoryId  String
   category    Category @relation(fields: [categoryId], references: [id])
 }
@@ -33,9 +33,23 @@ model Category {
 }
 
 model User {
+  id        String          @id @default(cuid())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @default(now()) @updatedAt
+  email     String          @unique
+  mobile    String          @unique
+  password  String
+  addresses UserAddresses[]
+}
+
+model UserAddresses {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-  email     String   @unique
-  password  String
+  firstname String
+  lastname  String
+  street    String
+  city      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
 }
