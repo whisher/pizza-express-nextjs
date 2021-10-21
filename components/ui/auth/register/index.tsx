@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import {
   Alert,
   AlertIcon,
@@ -27,6 +28,7 @@ const sendRegister = (
   return axios.post("/api/auth/register", data);
 };
 const Register = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -40,7 +42,9 @@ const Register = () => {
     const { email, password, mobile } = data;
     setIsLoading(true);
     sendRegister({ email, password, mobile })
-      .then((res) => console.log(res))
+      .then((res) => {
+        router.replace("/auth/login");
+      })
       .catch(() => setError(true))
       .finally(() => {
         setIsLoading(false);

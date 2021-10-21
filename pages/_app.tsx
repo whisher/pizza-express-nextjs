@@ -1,6 +1,7 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
+import { Provider } from "next-auth/client";
 import { Global, css } from "@emotion/react";
 import { theme } from "../theme";
 import { Layout } from "../components/layout";
@@ -21,25 +22,27 @@ const GlobalStyles = css`
 `;
 const PizzaExpressApp = ({
   Component,
-  pageProps: { ...pageProps }
+  pageProps: { session, ...pageProps }
 }: AppProps) => {
   return (
     <ChakraProvider theme={theme}>
       <Global styles={GlobalStyles} />
-      <Layout>
-        <Head>
-          <title>{process.env.NEXT_PUBLIC_SITE_TITLE}</title>
-          <meta
-            name="description"
-            content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
-          />
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-        </Head>
-        <Component {...pageProps} />
-      </Layout>
+      <Provider session={session}>
+        <Layout>
+          <Head>
+            <title>{process.env.NEXT_PUBLIC_SITE_TITLE}</title>
+            <meta
+              name="description"
+              content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
+            />
+            <meta
+              name="viewport"
+              content="initial-scale=1.0, width=device-width"
+            />
+          </Head>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </ChakraProvider>
   );
 };

@@ -1,28 +1,34 @@
 import type { NextPage, NextPageContext } from "next";
+import type { Session } from "next-auth";
 import Head from "next/head";
-
 import { getSession } from "next-auth/client";
 
-import { Login } from "../../components/ui/auth/login";
+import { Payment } from "../../components/ui/stripe";
 
-const AuthLogin: NextPage = () => {
-  const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Login`;
+interface ShopPaymentPageProps {
+  session: Session;
+}
+
+const ShopPayment: NextPage<ShopPaymentPageProps> = ({
+  session
+}: ShopPaymentPageProps) => {
+  const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - payment`;
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <Login />
+      <Payment />
     </>
   );
 };
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession({ req: context.req });
-  if (session) {
+  if (!session) {
     return {
       redirect: {
-        destination: "/shop",
+        destination: "/",
         permanent: false
       }
     };
@@ -31,4 +37,5 @@ export async function getServerSideProps(context: NextPageContext) {
     props: { session }
   };
 }
-export default AuthLogin;
+
+export default ShopPayment;

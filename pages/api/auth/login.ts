@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ErrorDto, UserLoginResponseDto } from "../../../types";
+import { getSession } from "next-auth/client";
 
 import { comparePassword, prisma } from "../../../util";
 
@@ -11,8 +12,12 @@ const userLogin = async (
     return res.status(405).json({ message: "Method not allowed." });
   }
 
-  const { email, password } = req.body;
   try {
+    const session = await getSession({ req });
+    if (session) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    const { email, password } = req.body;
     const user = await prisma.user.findFirst({
       where: {
         email

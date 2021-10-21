@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import {
   Alert,
   AlertIcon,
@@ -10,18 +11,16 @@ import {
 } from "@chakra-ui/react";
 import { HiCurrencyEuro } from "react-icons/hi";
 import { useForm } from "react-hook-form";
-import { useSession } from "next-auth/client";
 
 import type { UserDeliveryRequestDto } from "../../../../types";
 import axios from "../../../../util/axios";
 
-const sendUserDelivery = (data: UserDeliveryRequestDto) => {
+const sendUserDelivery = (data: Omit<UserDeliveryRequestDto, "email">) => {
   return axios.post("/api/user/address", data);
 };
 
 const CheckoutForm = () => {
-  const [session] = useSession();
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -37,10 +36,11 @@ const CheckoutForm = () => {
       firstname,
       lastname,
       street,
-      city,
-      email: session?.user?.email
+      city
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        router.replace("/shop/payment");
+      })
       .catch(() => setError(true))
       .finally(() => {
         setIsLoading(false);

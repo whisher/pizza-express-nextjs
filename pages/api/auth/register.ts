@@ -2,6 +2,7 @@ import { Prisma as PrismaOrm } from "@prisma/client";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ErrorDto, UserRegisterResponseDto } from "../../../types";
+import { getSession } from "next-auth/client";
 
 import prisma from "../../../util/prisma";
 import { hashPassword } from "../../../util/auth";
@@ -15,7 +16,12 @@ const userRegister = async (
   }
 
   try {
+    const session = await getSession({ req });
+    if (session) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     const user = req.body;
+
     user.password = await hashPassword(user.password);
 
     const { email } = await prisma.user.create({ data: user });

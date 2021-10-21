@@ -1,8 +1,9 @@
 import type { NextPage, NextPageContext } from "next";
 import type { Session } from "next-auth";
-import { getSession } from "next-auth/client";
 
 import Head from "next/head";
+import { getSession } from "next-auth/client";
+
 import { Checkout } from "../../components/ui/checkout";
 
 interface ShopCheckoutPageProps {
