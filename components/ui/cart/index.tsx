@@ -17,7 +17,7 @@ const Cart = () => {
   const hasProducts = quantity > 0;
   return (
     <CartBadge num={quantity}>
-      <Menu>
+      <Menu id="navbar">
         <MenuButton
           as={IconButton}
           aria-label="cart"

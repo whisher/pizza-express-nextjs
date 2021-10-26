@@ -39,7 +39,7 @@ const Payment = () => {
       })
       .catch(() => setError(true));
   }, [cart]);
-  console.log("clientSecret", clientSecret);
+
   if (!clientSecret) {
     return (
       <Flex justifyContent="center" mt="4">
@@ -47,6 +47,7 @@ const Payment = () => {
       </Flex>
     );
   }
+
   if (error) {
     return (
       <Alert status="error" mb="2">
@@ -55,6 +56,7 @@ const Payment = () => {
       </Alert>
     );
   }
+
   const appearance: Appearance = {
     theme: "stripe"
   };
@@ -64,7 +66,7 @@ const Payment = () => {
     appearance,
     locale: "it"
   };
-  console.log(options);
+
   return (
     <Box>
       <Elements options={options} stripe={stripePromise}>
