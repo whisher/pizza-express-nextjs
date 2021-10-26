@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import type { ErrorDto, UserLoginResponseDto } from "../../../types";
 import { getSession } from "next-auth/client";
 
-import { comparePassword, prisma } from "../../../util";
+import { comparePassword, prisma } from "../../../app/util";
 
 const userLogin = async (
   req: NextApiRequest,

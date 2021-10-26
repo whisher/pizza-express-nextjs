@@ -19,8 +19,15 @@ export interface UserRegisterResponseDto {
   email: string;
 }
 
-export interface UserDeliveryRequestDto {
-  email: string | undefined | null;
+export interface UserAddressRequestDto {
+  firstname: string;
+  lastname: string;
+  city: string;
+  street: string;
+}
+
+export interface UserAddressResponseDto {
+  id: string;
   firstname: string;
   lastname: string;
   city: string;

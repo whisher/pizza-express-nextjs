@@ -4,7 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "next-auth/client";
 import { Global, css } from "@emotion/react";
 import { theme } from "../theme";
-import { Layout } from "../components/layout";
+import { Layout } from "../app/components/layout";
 import "focus-visible/dist/focus-visible";
 const GlobalStyles = css`
   /*

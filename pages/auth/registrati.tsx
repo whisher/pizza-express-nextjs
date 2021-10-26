@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { getSession } from "next-auth/client";
 
-import { Register } from "../../components/ui/auth/register";
+import { Register } from "../../app/components/ui/auth/register";
 const AuthRegister: NextPage = () => {
   const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Login`;
   return (

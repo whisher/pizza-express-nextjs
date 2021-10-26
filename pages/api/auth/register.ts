@@ -4,8 +4,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import type { ErrorDto, UserRegisterResponseDto } from "../../../types";
 import { getSession } from "next-auth/client";
 
-import prisma from "../../../util/prisma";
-import { hashPassword } from "../../../util/auth";
+import prisma from "../../../app/util/prisma";
+import { hashPassword } from "../../../app/util/auth";
 
 const userRegister = async (
   req: NextApiRequest,

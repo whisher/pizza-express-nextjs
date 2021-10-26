@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
 import type { UserLoginRequestDto } from "../../../types";
-import axios from "../../../util/axios";
+import axios from "../../../app/util/axios";
 
 const sendLogin = async (data: UserLoginRequestDto) => {
   return await axios.post("/api/auth/login", data);

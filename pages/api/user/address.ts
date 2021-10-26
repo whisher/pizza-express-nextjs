@@ -1,17 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ErrorDto } from "../../../types";
-import { getSession } from "next-auth/client";
-import { prisma } from "../../../util";
+import type { UserAddressResponseDto } from "../../../types";
 
-const selectFields = {
+import { getSession } from "next-auth/client";
+import { prisma } from "../../../app/util";
+
+const selectUserFields = {
   id: true
 };
 
-const userAddresss = async (
+const selectUserAddressFields = {
+  id: true,
+  firstname: true,
+  lastname: true,
+  street: true,
+  city: true
+};
+
+const userAddress = async (
   req: NextApiRequest,
-  res: NextApiResponse<ErrorDto | any>
+  res: NextApiResponse<ErrorDto | UserAddressResponseDto | null>
 ) => {
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed." });
   }
 
@@ -26,19 +36,23 @@ const userAddresss = async (
       where: {
         email
       },
-      select: selectFields
+      select: selectUserFields
     });
     if (!user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-    const { id } = user;
-    const userRequest = req.body;
-    const userAddress = { userId: id, ...userRequest };
-    const address = await prisma.userAddresses.create({ data: userAddress });
+    const { id: userId } = user;
+
+    const address = await prisma.userAddresses.findFirst({
+      where: {
+        userId
+      },
+      select: selectUserAddressFields
+    });
     return res.status(200).json(address);
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
-export default userAddresss;
+export default userAddress;

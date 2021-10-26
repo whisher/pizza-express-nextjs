@@ -3,7 +3,7 @@ import type { Session } from "next-auth";
 import Head from "next/head";
 import { getSession } from "next-auth/client";
 
-import { Payment } from "../../components/ui/stripe";
+import { Payment } from "../../app/components/ui/payment";
 
 interface ShopPaymentPageProps {
   session: Session;

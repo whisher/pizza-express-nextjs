@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { getSession } from "next-auth/client";
 
-import { Login } from "../../components/ui/auth/login";
+import { Login } from "../../app/components/ui/auth/login";
 
 const AuthLogin: NextPage = () => {
   const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Login`;

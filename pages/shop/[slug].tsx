@@ -3,9 +3,9 @@ import Head from "next/head";
 
 import type { ProductDto } from "../../types";
 
-import axios from "../../util/axios";
+import axios from "../../app/util/axios";
 
-import { Product } from "../../components/ui/products/product";
+import { Product } from "../../app/components/ui/products/product";
 
 type ShopPageWithSlugProps = {
   data: ProductDto;

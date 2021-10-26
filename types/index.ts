@@ -7,7 +7,8 @@ export type {
 } from "./product";
 export type { StripePaymentIntentDto } from "./stripe";
 export type {
-  UserDeliveryRequestDto,
+  UserAddressRequestDto,
+  UserAddressResponseDto,
   UserLoginRequestDto,
   UserLoginResponseDto,
   UserRegisterRequestDto,

@@ -5,12 +5,12 @@ import { Flex } from "@chakra-ui/react";
 
 import type { CategoryWithProductsDto } from "../../types";
 
-import axios from "../../util/axios";
+import axios from "../../app/util/axios";
 
-import { useCategoryWithProducts } from "../../hooks/categoryWithProducts";
-import { ButtonGroup } from "../../components/ui/button-group";
-import { NoData } from "../../components/ui/nodata";
-import { Products } from "../../components/ui/products";
+import { useCategoryWithProducts } from "../../app/hooks/categoryWithProducts";
+import { ButtonGroup } from "../../app/components/ui/button-group";
+import { NoData } from "../../app/components/ui/nodata";
+import { Products } from "../../app/components/ui/products";
 
 type ShopPageProps = {
   data: CategoryWithProductsDto[];

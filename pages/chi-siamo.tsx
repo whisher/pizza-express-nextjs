@@ -3,7 +3,7 @@ import Head from "next/head";
 import NextLink from "next/link";
 import { Button, Flex } from "@chakra-ui/react";
 import { MdShoppingCart } from "react-icons/md";
-import { Heading, Text } from "../components/ui/typography";
+import { Heading, Text } from "../app/components/ui/typography";
 const About: NextPage = () => {
   const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Chi Siamo`;
   return (
