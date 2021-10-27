@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import NextLink from "next/link";
 import { Button, Flex } from "@chakra-ui/react";
 import { MdShoppingCart } from "react-icons/md";
-import { Heading, Text } from "../components/ui/typography";
+import { Heading, Text } from "../app/components/ui/typography";
 const Home: NextPage = () => {
   return (
     <Flex as="section" direction="column" alignItems="center">

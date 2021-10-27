@@ -33,11 +33,10 @@ const theme = extendTheme(
     },
     components: {
       Button: {
-        // 1. We can update the base styles
         baseStyle: {
-          color: "white" // Normally, it is "semibold"
+          color: "white"
         },
-        // 3. We can add a new visual variant
+
         variants: {
           cart: {
             bg: "primary.400"

@@ -1,10 +1,10 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
-import type { AccountDto } from "../../../types";
-import axios from "../../../util/axios";
+import type { UserLoginRequestDto } from "../../../types";
+import axios from "../../../app/util/axios";
 
-const sendLogin = async (data: AccountDto) => {
+const sendLogin = async (data: UserLoginRequestDto) => {
   return await axios.post("/api/auth/login", data);
 };
 
@@ -19,7 +19,7 @@ export default NextAuth({
       async authorize(credentials, req) {
         try {
           const { email, password } = credentials;
-          const data: AccountDto = { email, password };
+          const data: UserLoginRequestDto = { email, password };
           const user = await sendLogin(data);
           const userData = await user.data;
           return userData;

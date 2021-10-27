@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ErrorDto, ProductDto } from "../../../types";
 
-import { prisma } from "../../../util";
+import { prisma } from "../../../app/util";
 
 const selectFields = {
   description: true,

@@ -1,20 +1,12 @@
 import type { NextPage, NextPageContext } from "next";
-import type { Session } from "next-auth";
-import { getSession } from "next-auth/client";
 
 import Head from "next/head";
-import { Flex } from "@chakra-ui/react";
-import { Checkout } from "../../components/ui/checkout";
+import { getSession } from "next-auth/client";
 
-interface ShopCheckoutPageProps {
-  session: Session;
-}
+import { Checkout } from "../../app/components/ui/checkout";
 
-const ShopCheckout: NextPage<ShopCheckoutPageProps> = ({
-  session
-}: ShopCheckoutPageProps) => {
+const ShopCheckout: NextPage = () => {
   const title = `${process.env.NEXT_PUBLIC_SITE_TITLE} - Checkout`;
-  console.log("sesion server", session);
   return (
     <>
       <Head>
