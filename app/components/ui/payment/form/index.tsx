@@ -5,14 +5,18 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { Alert, AlertIcon, Button, Flex } from "@chakra-ui/react";
+import { formatMoney } from "../../../../util/format";
 
-const PaymentForm = () => {
+export interface PaymentFormProps {
+  total: number;
+}
+const PaymentForm = ({ total }: PaymentFormProps) => {
   const stripe = useStripe();
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const totalFormatMoney = formatMoney(total);
   useEffect(() => {
     if (!stripe) {
       return;
@@ -83,7 +87,7 @@ const PaymentForm = () => {
         {isLoading ? (
           <Button
             isLoading
-            loadingText="Paga il tuo ordine"
+            loadingText="`Paga {totalFormatMoney}`"
             spinnerPlacement="end"
             size="lg"
           ></Button>
@@ -93,7 +97,7 @@ const PaymentForm = () => {
             size="lg"
             type="submit"
           >
-            Paga il tuo ordine
+            Paga {totalFormatMoney}
           </Button>
         )}
       </Flex>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, AlertIcon, Box, Flex, Spinner } from "@chakra-ui/react";
 import useSWR from "swr";
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import type { UserAddressResponseDto } from "../../../../types";
 
 import axios from "../../../util/axios";
