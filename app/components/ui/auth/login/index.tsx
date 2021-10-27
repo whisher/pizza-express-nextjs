@@ -17,6 +17,8 @@ import {
 import { HiOutlineLockOpen } from "react-icons/hi";
 import { useForm } from "react-hook-form";
 import type { UserLoginRequestDto } from "../../../../../types";
+import { useCart } from "../../../../hooks/cart";
+import { cartQuantity } from "../../../../util/cart";
 
 const login = async (data: UserLoginRequestDto) => {
   const { email, password } = data;
@@ -28,6 +30,12 @@ const login = async (data: UserLoginRequestDto) => {
   return result;
 };
 const Login = () => {
+  const cart = useCart((state) => ({
+    cart: state.cart
+  }));
+  const quantity = cartQuantity(cart.cart);
+  const hasProducts = quantity > 0;
+
   const router = useRouter();
   const {
     register,
@@ -46,7 +54,11 @@ const Login = () => {
           if (result.error) {
             setError(true);
           } else {
-            router.replace("/shop/checkout");
+            if (hasProducts) {
+              router.replace("/shop/checkout");
+            } else {
+              router.replace("/shop");
+            }
           }
         }
       })

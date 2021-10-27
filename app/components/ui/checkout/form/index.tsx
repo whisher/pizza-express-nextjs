@@ -17,34 +17,63 @@ import type {
 } from "../../../../../types";
 import axios from "../../../../util/axios";
 
-const sendUserCreateAddress = (data: UserAddressRequestDto) => {
+const sendUserCreateAddress = (
+  data: UserAddressRequestDto
+): Promise<UserAddressResponseDto> => {
   return axios.post("/api/user/address-create", data);
 };
 
-export interface CheckoutFormProps {
-  data: UserAddressResponseDto;
-}
+const sendUserUpdateAddress = (
+  data: UserAddressResponseDto
+): Promise<UserAddressResponseDto> => {
+  return axios.put("/api/user/address-update", data);
+};
 
-const CheckoutForm = ({ data }: CheckoutFormProps) => {
-  console.log("Form", data);
+const sendUserAddress = (
+  address: UserAddressResponseDto | null,
+  data: UserAddressRequestDto
+): Promise<UserAddressResponseDto> => {
+  if (address) {
+    const { id, ...userData } = address;
+    if (JSON.stringify(data) === JSON.stringify(userData)) {
+      return new Promise((resolve, reject) => {
+        resolve(address);
+      });
+    }
+    return sendUserUpdateAddress({ id, ...data });
+  }
+  return sendUserCreateAddress(data);
+};
+
+export interface CheckoutFormProps {
+  address: UserAddressResponseDto | null;
+}
+const formInitialData = {
+  firstname: "",
+  lastname: "",
+  city: "",
+  street: ""
+};
+const CheckoutForm = ({ address }: CheckoutFormProps) => {
   const router = useRouter();
+  let formData = formInitialData;
+  if (address) {
+    const { id, ...userAddressData } = address;
+    formData = userAddressData;
+  }
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<UserAddressRequestDto>();
+  } = useForm<UserAddressRequestDto>({
+    defaultValues: formData
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const onSubmit = handleSubmit((data) => {
-    const { firstname, lastname, street, city } = data;
     setIsLoading(true);
-    sendUserCreateAddress({
-      firstname,
-      lastname,
-      street,
-      city
-    })
+    sendUserAddress(address, data)
       .then((res) => {
         router.replace("/shop/payment");
       })
@@ -56,7 +85,7 @@ const CheckoutForm = ({ data }: CheckoutFormProps) => {
   return (
     <Box>
       <Heading as="h2" py={[2, 4]} fontSize={["2xl", "3xl"]} textAlign="center">
-        Consegna a:
+        Consegnare a:
       </Heading>
 
       <form onSubmit={onSubmit}>

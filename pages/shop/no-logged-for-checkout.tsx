@@ -1,7 +1,8 @@
-import type { NextPage } from "next";
+import type { NextPage, NextPageContext } from "next";
 
 import Head from "next/head";
 import NextLink from "next/link";
+import { getSession } from "next-auth/client";
 import { Button, Flex } from "@chakra-ui/react";
 import { HiOutlineLockOpen } from "react-icons/hi";
 import { Text } from "../../app/components/ui/typography";
@@ -30,4 +31,18 @@ const ShopNoLoggedForCheckout: NextPage = () => {
   );
 };
 
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession({ req: context.req });
+  if (session) {
+    return {
+      redirect: {
+        destination: "/shop",
+        permanent: false
+      }
+    };
+  }
+  return {
+    props: { session }
+  };
+}
 export default ShopNoLoggedForCheckout;

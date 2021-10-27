@@ -12,10 +12,10 @@ const fetcher = async (url: string) =>
   await axios.get(url).then((res) => res.data);
 
 const Checkout = () => {
-  const { data, error } = useSWR<UserAddressResponseDto, AxiosError<Error>>(
-    "api/user/address",
-    fetcher
-  );
+  const { data, error } = useSWR<
+    UserAddressResponseDto | null,
+    AxiosError<Error>
+  >("api/user/address", fetcher);
   if (error) {
     return (
       <Alert status="error" mb="2">
@@ -34,7 +34,7 @@ const Checkout = () => {
   return (
     <Flex pb="4" direction={["column-reverse", "row"]} bg="white">
       <Box flex="1" px={[4, 8]}>
-        <CheckoutForm data={data} />
+        <CheckoutForm address={data} />
       </Box>
       <Box flex="1" px={[4, 8]}>
         <CheckoutCart />
