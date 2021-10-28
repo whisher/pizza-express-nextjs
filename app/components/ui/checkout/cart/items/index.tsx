@@ -20,9 +20,8 @@ const CheckoutCartItems = ({ cart, quantity, total }: CartItemsProps) => {
         alignItems="center"
         justifyContent="space-between"
         bg="white"
-        fontSize="xlg"
+        fontSize="xl"
         fontWeight="semibold"
-        px={[2, 4]}
         py={[2, 4]}
       >
         <Box>

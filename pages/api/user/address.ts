@@ -19,7 +19,7 @@ const selectUserAddressFields = {
 
 const userAddress = async (
   req: NextApiRequest,
-  res: NextApiResponse<ErrorDto | UserAddressResponseDto | null>
+  res: NextApiResponse<ErrorDto | UserAddressResponseDto | {}>
 ) => {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed." });
@@ -49,7 +49,7 @@ const userAddress = async (
       },
       select: selectUserAddressFields
     });
-    return res.status(200).json(address);
+    return res.status(200).json(address ? address : {});
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
   }

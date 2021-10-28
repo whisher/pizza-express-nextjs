@@ -37,7 +37,7 @@ const PaymentAddress = () => {
     );
   }
   return (
-    <Flex direction="column" fontSize={["md", "xl"]} fontWeight="semibold">
+    <Flex direction="column" fontSize={["md", "xl"]}>
       <Heading as="h6" fontSize="xl" mb={[0, 2]}>
         Consegnare a:
       </Heading>

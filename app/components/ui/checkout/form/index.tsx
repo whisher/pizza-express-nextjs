@@ -30,10 +30,10 @@ const sendUserUpdateAddress = (
 };
 
 const sendUserAddress = (
-  address: UserAddressResponseDto | null,
+  address: UserAddressResponseDto | {},
   data: UserAddressRequestDto
 ): Promise<UserAddressResponseDto> => {
-  if (address) {
+  if ("id" in address) {
     const { id, ...userData } = address;
     if (JSON.stringify(data) === JSON.stringify(userData)) {
       return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ const sendUserAddress = (
 };
 
 export interface CheckoutFormProps {
-  address: UserAddressResponseDto | null;
+  address: UserAddressResponseDto | {};
 }
 const formInitialData = {
   firstname: "",
@@ -57,7 +57,7 @@ const formInitialData = {
 const CheckoutForm = ({ address }: CheckoutFormProps) => {
   const router = useRouter();
   let formData = formInitialData;
-  if (address) {
+  if ("id" in address) {
     const { id, ...userAddressData } = address;
     formData = userAddressData;
   }
@@ -84,7 +84,7 @@ const CheckoutForm = ({ address }: CheckoutFormProps) => {
   });
   return (
     <Box>
-      <Heading as="h2" py={[2, 4]} fontSize={["2xl", "3xl"]} textAlign="center">
+      <Heading as="h2" py={[2, 4]} fontSize={["2xl", "3xl"]}>
         Consegnare a:
       </Heading>
 

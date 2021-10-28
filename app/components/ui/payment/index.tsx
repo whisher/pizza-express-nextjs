@@ -45,12 +45,10 @@ const Payment = () => {
     sendStripeIntent({ cart })
       .then((res) => res.data)
       .then((data) => {
-        console.log("data", data);
         setClientSecret(data);
       })
       .catch(() => setError(true));
   }, [cart]);
-
   if (!clientSecret) {
     return (
       <Flex justifyContent="center" mt="4">
@@ -82,7 +80,10 @@ const Payment = () => {
     <Flex pb="4" direction={["column-reverse", "row"]} bg="white">
       <Box flex="1" px={[4, 8]}>
         <Elements options={options} stripe={stripePromise}>
-          <PaymentForm total={total} />
+          <PaymentForm
+            clientSecret={clientSecret.paymentIntent}
+            total={total}
+          />
         </Elements>
       </Box>
       <Box flex="1" px={[4, 8]}>

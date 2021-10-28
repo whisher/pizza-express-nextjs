@@ -13,7 +13,7 @@ const fetcher = async (url: string) =>
 
 const Checkout = () => {
   const { data, error } = useSWR<
-    UserAddressResponseDto | null,
+    UserAddressResponseDto | {},
     AxiosError<Error>
   >("api/user/address", fetcher);
   if (error) {
