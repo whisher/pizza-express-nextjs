@@ -5,6 +5,7 @@ export type {
   CategoryWithProductsDto,
   ProductDto
 } from "./product";
+export type { OrderProductDto } from "./order";
 export type { StripePaymentIntentDto } from "./stripe";
 export type {
   UserAddressRequestDto,

@@ -12,17 +12,32 @@ import {
   Heading,
   Stack
 } from "@chakra-ui/react";
+import type { CartDto, OrderProductDto } from "../../../../../types";
+import axios from "../../../../util/axios";
+import { useCart } from "../../../../hooks/cart";
 import { formatMoney } from "../../../../util/format";
 
+const sendOrder = (data: {
+  cart: { [id: string]: CartDto };
+  stripeIntent: string;
+}): Promise<OrderProductDto[]> => {
+  return axios.post("/api/order/create", data);
+};
+
 export interface PaymentFormProps {
-  clientSecret: string | null;
+  secret: string;
   total: number;
 }
-const PaymentForm = ({ clientSecret, total }: PaymentFormProps) => {
+const PaymentForm = ({ secret, total }: PaymentFormProps) => {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const cart = useCart((state) => ({
+    data: state.cart,
+    reset: state.reset
+  }));
+
   const totalFormatMoney = formatMoney(total);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,25 +45,33 @@ const PaymentForm = ({ clientSecret, total }: PaymentFormProps) => {
     if (!stripe || !elements) {
       return;
     }
+    sendOrder({ cart: cart.data, stripeIntent: secret })
+      .then(async () => {
+        cart.reset();
+        const redirectUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
+        const result = await stripe.confirmPayment({
+          //`Elements` instance that was used to create the Payment Element
+          elements,
+          confirmParams: {
+            return_url: `${redirectUrl}/shop/order`
+          }
+        });
 
-    const result = await stripe.confirmPayment({
-      //`Elements` instance that was used to create the Payment Element
-      elements,
-      confirmParams: {
-        return_url: "https://my-site.com/order/123/complete"
-      }
-    });
+        if (result.error) {
+          // Show error to your customer (e.g., payment details incomplete)
+          console.log(result.error.message);
+          setError(result.error.message as string);
+        } else {
+          setIsLoading(false);
 
-    if (result.error) {
-      // Show error to your customer (e.g., payment details incomplete)
-      console.log(result.error.message);
-      setError(result.error.message as string);
-    } else {
-      setIsLoading(false);
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
-    }
+          // Your customer will be redirected to your `return_url`. For some payment
+          // methods like iDEAL, your customer will be redirected to an intermediate
+          // site first to authorize the payment, then redirected to the `return_url`.
+        }
+      })
+      .catch(() => {
+        setError("Sorry, qualcosa è andato storto");
+      });
   };
   return (
     <Box>

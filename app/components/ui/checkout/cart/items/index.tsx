@@ -14,6 +14,8 @@ export interface CartItemsProps {
 const CheckoutCartItems = ({ cart, quantity, total }: CartItemsProps) => {
   const labelQuantity = quantity > 1 ? "Pizze" : "Pizza";
   const totalFormatMoney = formatMoney(total);
+  const productKeys = Object.keys(cart);
+  const len = productKeys.length;
   return (
     <Flex direction="column">
       <Flex
@@ -30,8 +32,10 @@ const CheckoutCartItems = ({ cart, quantity, total }: CartItemsProps) => {
         <Box>Total: {totalFormatMoney}</Box>
       </Flex>
       <Divider />
-      {Object.keys(cart).map((product) => (
-        <CheckoutCartItem key={product} cart={cart[product]} />
+      {productKeys.map((product, index) => (
+        <Box mb={index !== len ? 4 : 0} key={product}>
+          <CheckoutCartItem cart={cart[product]} />
+        </Box>
       ))}
     </Flex>
   );

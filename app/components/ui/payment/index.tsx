@@ -69,9 +69,9 @@ const Payment = () => {
   const appearance: Appearance = {
     theme: "stripe"
   };
-
+  const secret = clientSecret?.paymentIntent as string;
   const options: StripeElementsOptions = {
-    clientSecret: clientSecret?.paymentIntent as string,
+    clientSecret: secret,
     appearance,
     locale: "it"
   };
@@ -80,10 +80,7 @@ const Payment = () => {
     <Flex pb="4" direction={["column-reverse", "row"]} bg="white">
       <Box flex="1" px={[4, 8]}>
         <Elements options={options} stripe={stripePromise}>
-          <PaymentForm
-            clientSecret={clientSecret.paymentIntent}
-            total={total}
-          />
+          <PaymentForm secret={secret} total={total} />
         </Elements>
       </Box>
       <Box flex="1" px={[4, 8]}>

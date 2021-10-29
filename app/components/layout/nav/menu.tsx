@@ -10,8 +10,9 @@ const Menu = () => {
     reset: state.reset
   }));
   const logout = () => {
-    cart.reset();
-    signOut();
+    signOut().then(() => {
+      cart.reset();
+    });
   };
   return (
     <Flex
