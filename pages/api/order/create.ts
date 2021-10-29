@@ -56,7 +56,6 @@ const createOrder = async (
       return orders;
     });
     const orderProductsAll = await Promise.all(orderProducts);
-
     return res.status(200).json(orderProductsAll);
   } catch (error) {
     return res.status(400).json({ message: "Something went wrong." });

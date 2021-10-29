@@ -62,8 +62,6 @@ const PaymentForm = ({ secret, total }: PaymentFormProps) => {
           console.log(result.error.message);
           setError(result.error.message as string);
         } else {
-          setIsLoading(false);
-
           // Your customer will be redirected to your `return_url`. For some payment
           // methods like iDEAL, your customer will be redirected to an intermediate
           // site first to authorize the payment, then redirected to the `return_url`.
@@ -71,6 +69,9 @@ const PaymentForm = ({ secret, total }: PaymentFormProps) => {
       })
       .catch(() => {
         setError("Sorry, qualcosa è andato storto");
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
   return (
