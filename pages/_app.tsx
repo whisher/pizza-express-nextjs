@@ -6,6 +6,7 @@ import { Global, css } from "@emotion/react";
 import { theme } from "../theme";
 import { Layout } from "../app/components/layout";
 import "focus-visible/dist/focus-visible";
+
 const GlobalStyles = css`
   /*
     This will hide the focus indicator if the element receives focus    via the mouse,
@@ -18,6 +19,28 @@ const GlobalStyles = css`
   .image {
     background-color: #efefef;
     border-radius: 0.375rem;
+  }
+
+  .menu-item::before,
+  .menu-item-active::before {
+    content: "";
+    display: block;
+    height: 3px;
+    background: #fff;
+    position: absolute;
+    top: -0.15rem;
+    left: 0;
+    right: 0;
+    border-radius: 25%;
+    transform: scale(0);
+    transition: transform ease-in-out 250ms;
+  }
+
+  .menu-item:hover::before {
+    transform: scale(1);
+  }
+  .menu-item-active::before {
+    transform: scale(1, 1);
   }
 `;
 const PizzaExpressApp = ({

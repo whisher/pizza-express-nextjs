@@ -9,28 +9,24 @@ export interface MenuItemProps {
 }
 const MenuItem = ({ children, to = "/" }: MenuItemProps) => {
   const router = useRouter();
-  let bg = "primary.400";
-  let color = "white";
+  let cls = "menu-item";
+
   if (router.pathname === to) {
-    bg = "white";
-    color = "primary.400";
+    cls = "menu-item-active";
   }
   return (
     <Box as="li" mr={8}>
       <NextLink href={to} passHref>
         <Link
+          className={cls}
           d="block"
+          position="relative"
           px={1}
           py={1}
           borderRadius="md"
           fontSize="xl"
           letterSpacing="wide"
-          bg={bg}
-          color={color}
-          _hover={{
-            background: "white",
-            color: "primary.400",
-          }}
+          color="white"
         >
           {children}
         </Link>
