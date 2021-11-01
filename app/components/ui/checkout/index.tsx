@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, AlertIcon, Box, Flex, Spinner } from "@chakra-ui/react";
 import useSWR from "swr";
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 import type { UserAddressResponseDto } from "../../../../types";
 
 import axios from "../../../util/axios";
@@ -13,7 +13,7 @@ const fetcher = async (url: string) =>
 
 const Checkout = () => {
   const { data, error } = useSWR<
-    UserAddressResponseDto | null,
+    UserAddressResponseDto | {},
     AxiosError<Error>
   >("api/user/address", fetcher);
   if (error) {

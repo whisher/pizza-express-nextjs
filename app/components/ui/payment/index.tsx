@@ -5,12 +5,22 @@ import {
   StripeElementsOptions
 } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { Alert, AlertIcon, Box, Flex, Spinner } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Divider,
+  Flex,
+  Spinner
+} from "@chakra-ui/react";
 import type { CartDto, StripePaymentIntentDto } from "../../../../types";
 import axios from "../../../util/axios";
 import { useCart } from "../../../hooks/cart";
 import { cartQuantity, cartTotal } from "../../../util/cart";
+
+import { PaymentAddress } from "./address";
 import { PaymentForm } from "./form";
+import { PaymentCartItems } from "./cart/items";
 
 const stripePublic = process.env.NEXT_PUBLIC_STRIPE_PUBLIC;
 if (!stripePublic) {
@@ -23,6 +33,7 @@ const sendStripeIntent = (data: {
 }): Promise<{ data: StripePaymentIntentDto }> => {
   return axios.post("/api/payment/create-payment-intent", data);
 };
+
 const Payment = () => {
   const cart = useCart((state) => state.cart);
   const quantity = cartQuantity(cart);
@@ -34,16 +45,14 @@ const Payment = () => {
     sendStripeIntent({ cart })
       .then((res) => res.data)
       .then((data) => {
-        console.log("data", data);
         setClientSecret(data);
       })
       .catch(() => setError(true));
   }, [cart]);
-
   if (!clientSecret) {
     return (
       <Flex justifyContent="center" mt="4">
-        <Spinner size="xl" />
+        <Spinner color="white" size="xl" />
       </Flex>
     );
   }
@@ -60,19 +69,28 @@ const Payment = () => {
   const appearance: Appearance = {
     theme: "stripe"
   };
-
+  const secret = clientSecret?.paymentIntent as string;
   const options: StripeElementsOptions = {
-    clientSecret: clientSecret?.paymentIntent as string,
+    clientSecret: secret,
     appearance,
     locale: "it"
   };
 
   return (
-    <Box>
-      <Elements options={options} stripe={stripePromise}>
-        <PaymentForm />
-      </Elements>
-    </Box>
+    <Flex pb="4" direction={["column-reverse", "row"]} bg="white">
+      <Box flex="1" px={[4, 8]}>
+        <Elements options={options} stripe={stripePromise}>
+          <PaymentForm secret={secret} total={total} />
+        </Elements>
+      </Box>
+      <Box flex="1" px={[4, 8]}>
+        <PaymentCartItems cart={cart} quantity={quantity} total={total} />
+        <Divider my={[4, 8]} />
+        <Box>
+          <PaymentAddress />
+        </Box>
+      </Box>
+    </Flex>
   );
 };
 

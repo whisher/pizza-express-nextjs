@@ -17,10 +17,12 @@ const Header = () => {
     >
       <Logo />
 
-      <Flex alignItems="center" justifyContent="space-between">
+      <Flex flex="1" justifyContent={["center", "flex-end"]}>
         <Box mr={[0, 20]}>
           <Nav />
         </Box>
+      </Flex>
+      <Flex>
         <Cart />
       </Flex>
     </Flex>

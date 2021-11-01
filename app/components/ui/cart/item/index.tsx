@@ -1,6 +1,6 @@
 import React from "react";
 import type { CartDto } from "../../../../../types";
-import { Box, Flex, MenuItem } from "@chakra-ui/react";
+import { Box, Flex, MenuItem, Text } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 import { formatMoney } from "../../../../util/format";
 
@@ -22,7 +22,9 @@ const CartItem = ({ cart }: CartItemProps) => {
             alt={cart.name}
           />
         </Box>
-        <Box fontSize={["lg", "xl"]}>{cart.name}</Box>
+        <Box px={2}>
+          <Text fontSize={["lg", "xl"]}>{cart.name}</Text>
+        </Box>
         <Box>
           {cart.quantity} X {priceFormatMoney}
         </Box>
