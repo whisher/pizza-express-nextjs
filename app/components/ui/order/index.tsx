@@ -1,26 +1,40 @@
 import React, { useEffect } from "react";
-import { Text } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle
+} from "@chakra-ui/react";
 
 const Order = () => {
   useEffect(() => {
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
-    console.log("clientSecret", clientSecret);
     if (clientSecret) {
       return;
     }
   }, []);
   return (
-    <Text
-      as="p"
-      fontSize={["2xl", "3xl"]}
+    <Alert
+      borderRadius="md"
+      status="success"
+      variant="subtle"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
       textAlign="center"
-      color="white"
-      mt={[4, 16]}
+      height="200px"
+      bg="white"
     >
-      Order
-    </Text>
+      <AlertIcon boxSize="40px" mr={0} />
+      <AlertTitle mt={4} mb={1} fontSize={["xl", "2xl"]}>
+        Il tuo ordine sta arrivando.
+      </AlertTitle>
+      <AlertDescription maxWidth="sm" mt={[2, 4]} fontSize={["lg", "xl"]}>
+        Grazie e buon appetito :)
+      </AlertDescription>
+    </Alert>
   );
 };
 

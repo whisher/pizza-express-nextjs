@@ -52,7 +52,7 @@ const Payment = () => {
   if (!clientSecret) {
     return (
       <Flex justifyContent="center" mt="4">
-        <Spinner size="xl" />
+        <Spinner color="white" size="xl" />
       </Flex>
     );
   }

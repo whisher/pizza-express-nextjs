@@ -15,16 +15,13 @@ const MenuItem = ({ children, to = "/" }: MenuItemProps) => {
     cls = "menu-item-active";
   }
   return (
-    <Box as="li" mr={8}>
+    <Box as="li" mr={[0, 10]} mb={[6, 0]}>
       <NextLink href={to} passHref>
         <Link
           className={cls}
           d="block"
           position="relative"
-          px={1}
-          py={1}
-          borderRadius="md"
-          fontSize="xl"
+          fontSize={"xl"}
           letterSpacing="wide"
           color="white"
         >

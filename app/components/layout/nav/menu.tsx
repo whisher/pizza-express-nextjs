@@ -4,7 +4,10 @@ import { signOut, useSession } from "next-auth/client";
 import { Button, ButtonGroup, Flex } from "@chakra-ui/react";
 import { useCart } from "../../../hooks/cart";
 import { MenuItem } from "./item";
-const Menu = () => {
+export interface MenuProps {
+  onCloseDrawer?: () => void;
+}
+const Menu = ({ onCloseDrawer }: MenuProps) => {
   const [session] = useSession();
   const cart = useCart((state) => ({
     reset: state.reset
@@ -16,8 +19,10 @@ const Menu = () => {
   };
   return (
     <Flex
+      onClick={onCloseDrawer}
       as="ul"
-      alignItems="center"
+      direction={["column", "row"]}
+      alignItems={["flex-start", "center"]}
       style={{
         listStyle: "none"
       }}

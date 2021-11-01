@@ -45,34 +45,31 @@ const PaymentForm = ({ secret, total }: PaymentFormProps) => {
     if (!stripe || !elements) {
       return;
     }
-    sendOrder({ cart: cart.data, stripeIntent: secret })
-      .then(async () => {
-        cart.reset();
-        const redirectUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
-        const result = await stripe.confirmPayment({
-          //`Elements` instance that was used to create the Payment Element
-          elements,
-          confirmParams: {
-            return_url: `${redirectUrl}/shop/order`
-          }
-        });
-
-        if (result.error) {
-          // Show error to your customer (e.g., payment details incomplete)
-          console.log(result.error.message);
-          setError(result.error.message as string);
-        } else {
-          // Your customer will be redirected to your `return_url`. For some payment
-          // methods like iDEAL, your customer will be redirected to an intermediate
-          // site first to authorize the payment, then redirected to the `return_url`.
+    try {
+      await sendOrder({ cart: cart.data, stripeIntent: secret });
+      cart.reset();
+      setIsLoading(false);
+      const redirectUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
+      const result = await stripe.confirmPayment({
+        //`Elements` instance that was used to create the Payment Element
+        elements,
+        confirmParams: {
+          return_url: `${redirectUrl}/shop/order`
         }
-      })
-      .catch(() => {
-        setError("Sorry, qualcosa è andato storto");
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
+
+      if (result.error) {
+        // Show error to your customer (e.g., payment details incomplete)
+        console.log(result.error.message);
+        setError(result.error.message as string);
+      } else {
+        // Your customer will be redirected to your `return_url`. For some payment
+        // methods like iDEAL, your customer will be redirected to an intermediate
+        // site first to authorize the payment, then redirected to the `return_url`.
+      }
+    } catch (error) {
+      setError("Sorry, qualcosa è andato storto");
+    }
   };
   return (
     <Box>

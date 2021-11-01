@@ -40,7 +40,7 @@ const GlobalStyles = css`
     transform: scale(1);
   }
   .menu-item-active::before {
-    transform: scale(1, 1);
+    transform: scale(1);
   }
 `;
 const PizzaExpressApp = ({
