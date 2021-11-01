@@ -1,10 +1,11 @@
 import React from "react";
-import { Alert, AlertIcon, Box, Flex, Spinner } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Flex } from "@chakra-ui/react";
 import useSWR from "swr";
 import type { AxiosError } from "axios";
 import type { UserAddressResponseDto } from "../../../../types";
 
 import axios from "../../../util/axios";
+import { Spinner } from "../spinner";
 import { CheckoutCart } from "./cart";
 import { CheckoutForm } from "./form";
 
@@ -25,11 +26,7 @@ const Checkout = () => {
     );
   }
   if (!data) {
-    return (
-      <Flex justifyContent="center" mt="4">
-        <Spinner size="xl" />
-      </Flex>
-    );
+    return <Spinner />;
   }
   return (
     <Flex pb="4" direction={["column-reverse", "row"]} bg="white">

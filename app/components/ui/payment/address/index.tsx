@@ -3,15 +3,9 @@ import useSWR from "swr";
 import type { AxiosError } from "axios";
 import type { UserAddressResponseDto } from "../../../../../types";
 
-import {
-  Alert,
-  AlertIcon,
-  Flex,
-  Heading,
-  Spinner,
-  Text
-} from "@chakra-ui/react";
+import { Alert, AlertIcon, Flex, Heading, Text } from "@chakra-ui/react";
 import axios from "../../../../util/axios";
+import { Spinner } from "../../spinner";
 
 const fetcher = async (url: string) =>
   await axios.get(url).then((res) => res.data);
@@ -30,11 +24,7 @@ const PaymentAddress = () => {
     );
   }
   if (!data) {
-    return (
-      <Flex justifyContent="center" mt="4">
-        <Spinner size="xl" />
-      </Flex>
-    );
+    return <Spinner />;
   }
   return (
     <Flex direction="column" fontSize={["md", "xl"]}>

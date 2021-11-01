@@ -5,19 +5,12 @@ import {
   StripeElementsOptions
 } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import {
-  Alert,
-  AlertIcon,
-  Box,
-  Divider,
-  Flex,
-  Spinner
-} from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Divider, Flex } from "@chakra-ui/react";
 import type { CartDto, StripePaymentIntentDto } from "../../../../types";
 import axios from "../../../util/axios";
 import { useCart } from "../../../hooks/cart";
 import { cartQuantity, cartTotal } from "../../../util/cart";
-
+import { Spinner } from "../spinner";
 import { PaymentAddress } from "./address";
 import { PaymentForm } from "./form";
 import { PaymentCartItems } from "./cart/items";
@@ -50,11 +43,7 @@ const Payment = () => {
       .catch(() => setError(true));
   }, [cart]);
   if (!clientSecret) {
-    return (
-      <Flex justifyContent="center" mt="4">
-        <Spinner color="white" size="xl" />
-      </Flex>
-    );
+    return <Spinner />;
   }
 
   if (error) {
