@@ -28,6 +28,7 @@ const userRegister = async (
 
     return res.status(200).json({ email });
   } catch (error) {
+    console.log("error", error);
     if (error instanceof PrismaOrm.PrismaClientKnownRequestError) {
       if (error.code === "P2002") {
         return res.status(422).json({ message: "Account already exists." });
