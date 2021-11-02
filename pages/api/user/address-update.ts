@@ -4,10 +4,6 @@ import type { UserAddressResponseDto } from "../../../types";
 import { getSession } from "next-auth/client";
 import { prisma } from "../../../app/util";
 
-const selectFields = {
-  id: true
-};
-
 const userAddressUpdate = async (
   req: NextApiRequest,
   res: NextApiResponse<ErrorDto | UserAddressResponseDto>
