@@ -22,7 +22,7 @@ export async function getServerSideProps(context: NextPageContext) {
   if (!session) {
     return {
       redirect: {
-        destination: "/",
+        destination: "/shop/no-logged-for-checkout",
         permanent: false
       }
     };
