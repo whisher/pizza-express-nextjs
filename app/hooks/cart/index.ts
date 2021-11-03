@@ -1,5 +1,5 @@
 import create from "zustand";
-// import { devtools, persist, StoreApiWithPersist } from "zustand/middleware";
+import { devtools, persist, StoreApiWithPersist } from "zustand/middleware";
 
 import type { CartDto } from "../../../types";
 

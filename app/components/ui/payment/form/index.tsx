@@ -57,7 +57,7 @@ const PaymentForm = ({ secret, total }: PaymentFormProps) => {
           return_url: `${redirectUrl}/shop/order`
         }
       });
-
+      console.log("result.error", result.error);
       if (result.error) {
         // Show error to your customer (e.g., payment details incomplete)
         console.log(result.error.message);
@@ -68,6 +68,7 @@ const PaymentForm = ({ secret, total }: PaymentFormProps) => {
         // site first to authorize the payment, then redirected to the `return_url`.
       }
     } catch (error) {
+      console.log("error", error);
       setError("Sorry, qualcosa è andato storto");
     }
   };
