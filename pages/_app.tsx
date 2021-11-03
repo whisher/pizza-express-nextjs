@@ -42,6 +42,9 @@ const GlobalStyles = css`
   .menu-item-active::before {
     transform: scale(1);
   }
+  .pointer-events-none {
+    pointer-events: none;
+  }
 `;
 const PizzaExpressApp = ({
   Component,
