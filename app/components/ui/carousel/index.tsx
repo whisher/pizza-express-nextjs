@@ -14,7 +14,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-funghi.jpg`}
+              src={`${src}pizza-funghi.min.jpg`}
               alt="Pizza ai Funghi"
             />
           </Link>
@@ -25,7 +25,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-margherita.jpg`}
+              src={`${src}pizza-margherita.min.jpg`}
               alt="Pizza Margherita"
             />
           </Link>
@@ -35,7 +35,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-marinara.jpg`}
+              src={`${src}pizza-marinara.min.jpg`}
               alt="Pizza Marinara"
             />
           </Link>
@@ -45,7 +45,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-quattro-stagioni.jpg`}
+              src={`${src}pizza-quattro-stagioni.min.jpg`}
               alt="Pizza Quattro Stagioni"
             />
           </Link>
@@ -55,7 +55,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-amalfi.jpg`}
+              src={`${src}pizza-amalfi.min.jpg`}
               alt="Pizza Amalfi"
             />
           </Link>
@@ -65,7 +65,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-bufala.jpg`}
+              src={`${src}pizza-bufala.min.jpg`}
               alt="Pizza con Bufala"
             />
           </Link>
@@ -75,7 +75,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-contadina.jpg`}
+              src={`${src}pizza-contadina.min.jpg`}
               alt="Pizza Contadina"
             />
           </Link>
@@ -85,7 +85,7 @@ const Carousel = () => {
             <Image
               boxSize={width}
               objectFit="fill"
-              src={`${src}pizza-patata.jpg`}
+              src={`${src}pizza-patata.min.jpg`}
               alt="Pizza Patata"
             />
           </Link>
