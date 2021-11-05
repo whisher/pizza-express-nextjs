@@ -9,10 +9,11 @@ export interface CarouselMainProps {
 
 const CarouselMain = ({ children }: CarouselMainProps) => {
   const childrenLen = children ? (children as React.ReactNode[]).length : 0;
+  console.log("childrenLen", children);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [length, setLength] = useState(childrenLen);
+
   const next = () => {
-    if (currentIndex < length - 1) {
+    if (currentIndex < childrenLen - 1) {
       setCurrentIndex((prevState) => prevState + 1);
     }
   };
@@ -23,12 +24,11 @@ const CarouselMain = ({ children }: CarouselMainProps) => {
     }
   };
   return (
-    <Box position="relative" bg="white">
+    <Box position="relative">
       <Flex
         direction="column"
         justifyContent="center"
         w="40px"
-        bg="red.300"
         position="absolute"
         top="0"
         bottom="0"
@@ -36,14 +36,17 @@ const CarouselMain = ({ children }: CarouselMainProps) => {
       >
         <IconButton
           onClick={prev}
-          bg="white"
+          bg="trasparent"
           color="primary.400"
+          _hover={{ bg: "white" }}
+          _focus={{ bg: "white" }}
+          _active={{ bg: "white" }}
           aria-label="slider left"
           icon={<HiChevronLeft size="2rem" />}
         />
       </Flex>
       <Box ml="40px" mr="40px" px={4}>
-        <Box w="100px" h="full" overflow="hidden">
+        <Box w={["150px", "200px"]} h="full" overflow="hidden">
           <Flex
             transition="all 250ms ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -56,7 +59,6 @@ const CarouselMain = ({ children }: CarouselMainProps) => {
         direction="column"
         justifyContent="center"
         w="40px"
-        bg="red.300"
         position="absolute"
         top="0"
         bottom="0"
@@ -66,6 +68,9 @@ const CarouselMain = ({ children }: CarouselMainProps) => {
           onClick={next}
           bg="white"
           color="primary.400"
+          _hover={{ bg: "white" }}
+          _focus={{ bg: "white" }}
+          _active={{ bg: "white" }}
           aria-label="slider right"
           icon={<HiChevronRight size="2rem" />}
         />

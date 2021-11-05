@@ -7,13 +7,13 @@ const Carousel = () => {
   return (
     <CarouselMain>
       <Image
-        boxSize={["50px", "100px"]}
+        boxSize={["150px", "200px"]}
         objectFit="contain"
         src={`${src}pizza-funghi.jpg`}
         alt="Pizza ai Funghi"
       />
       <Image
-        boxSize={["50px", "100px"]}
+        boxSize={["150px", "200px"]}
         objectFit="contain"
         src={`${src}pizza-margherita.jpg`}
         alt="Pizza Margherita"
