@@ -1,19 +1,22 @@
 import React, { ReactNode, useState } from "react";
-import { Box, Flex, IconButton } from "@chakra-ui/react";
+import { Box, Flex, IconButton, useBreakpointValue } from "@chakra-ui/react";
 
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
 export interface CarouselMainProps {
   children: ReactNode;
+  numberToShow: number;
 }
 
-const CarouselMain = ({ children }: CarouselMainProps) => {
+const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
+  const width = useBreakpointValue({ base: "100", md: 200 });
+
   const childrenLen = children ? (children as React.ReactNode[]).length : 0;
-  console.log("childrenLen", children);
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const next = () => {
-    if (currentIndex < childrenLen - 1) {
+    if (currentIndex + numberToShow < childrenLen) {
       setCurrentIndex((prevState) => prevState + 1);
     }
   };
@@ -23,6 +26,7 @@ const CarouselMain = ({ children }: CarouselMainProps) => {
       setCurrentIndex((prevState) => prevState - 1);
     }
   };
+
   return (
     <Box position="relative">
       <Flex
@@ -35,21 +39,34 @@ const CarouselMain = ({ children }: CarouselMainProps) => {
         left="0"
       >
         <IconButton
+          disabled={currentIndex < 1}
           onClick={prev}
           bg="trasparent"
-          color="primary.400"
-          _hover={{ bg: "white" }}
-          _focus={{ bg: "white" }}
-          _active={{ bg: "white" }}
+          color="white"
+          _hover={{ bg: "trasparent" }}
+          _focus={{ bg: "trasparent" }}
+          _active={{ bg: "trasparent" }}
           aria-label="slider left"
-          icon={<HiChevronLeft size="2rem" />}
+          icon={<HiChevronLeft size="3rem" />}
         />
       </Flex>
-      <Box ml="40px" mr="40px" px={4}>
-        <Box w={["150px", "200px"]} h="full" overflow="hidden">
+      <Box ml="40px" mr="40px">
+        <Box
+          w={Number(width) * numberToShow}
+          h={width}
+          overflow="hidden"
+          border="2px"
+          borderColor="white"
+          borderRadius="md"
+        >
           <Flex
+            bg="white"
+            w={[Number(width) * childrenLen]}
+            h={width}
             transition="all 250ms ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            style={{
+              transform: `translateX(-${currentIndex * Number(width)}px)`
+            }}
           >
             {children}
           </Flex>
@@ -65,14 +82,15 @@ const CarouselMain = ({ children }: CarouselMainProps) => {
         right="0"
       >
         <IconButton
+          disabled={currentIndex + numberToShow === childrenLen}
           onClick={next}
-          bg="white"
-          color="primary.400"
-          _hover={{ bg: "white" }}
-          _focus={{ bg: "white" }}
-          _active={{ bg: "white" }}
+          bg="trasparent"
+          color="white"
+          _hover={{ bg: "trasparent" }}
+          _focus={{ bg: "trasparent" }}
+          _active={{ bg: "trasparent" }}
           aria-label="slider right"
-          icon={<HiChevronRight size="2rem" />}
+          icon={<HiChevronRight size="3rem" />}
         />
       </Flex>
     </Box>
