@@ -47,11 +47,15 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
           _focus={{ bg: "trasparent" }}
           _active={{ bg: "trasparent" }}
           aria-label="slider left"
+          aria-controls="carousel-bar"
           icon={<HiChevronLeft size="3rem" />}
         />
       </Flex>
       <Box ml="40px" mr="40px">
         <Box
+          as="section"
+          aria-roledescription="carousel"
+          aria-label="pizzas shows"
           w={Number(width) * numberToShow}
           h={width}
           overflow="hidden"
@@ -60,6 +64,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
           borderRadius="md"
         >
           <Flex
+            id="carousel-bar"
             bg="white"
             w={[Number(width) * childrenLen]}
             h={width}
@@ -90,6 +95,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
           _focus={{ bg: "trasparent" }}
           _active={{ bg: "trasparent" }}
           aria-label="slider right"
+          aria-controls="carousel-bar"
           icon={<HiChevronRight size="3rem" />}
         />
       </Flex>

@@ -11,7 +11,11 @@ const Carousel = () => {
     <Box mt="1rem">
       <CarouselMain numberToShow={3}>
         <NextLink href={"/shop/pizza-ai-funghi"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="1 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
@@ -25,7 +29,11 @@ const Carousel = () => {
         </NextLink>
 
         <NextLink href={"/shop/pizza-margherita"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="2 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
@@ -38,7 +46,11 @@ const Carousel = () => {
           </LinkOverlay>
         </NextLink>
         <NextLink href={"/shop/pizza-marinara"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="3 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
@@ -51,7 +63,11 @@ const Carousel = () => {
           </LinkOverlay>
         </NextLink>
         <NextLink href={"/shop/pizza-quattro-stagioni"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="4 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
@@ -64,7 +80,11 @@ const Carousel = () => {
           </LinkOverlay>
         </NextLink>
         <NextLink href={"/shop/pizza-amalfi"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="5 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
@@ -77,7 +97,11 @@ const Carousel = () => {
           </LinkOverlay>
         </NextLink>
         <NextLink href={"/shop/pizza-bufala"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="6 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
@@ -90,7 +114,11 @@ const Carousel = () => {
           </LinkOverlay>
         </NextLink>
         <NextLink href={"/shop/pizza-contadina"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="7 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
@@ -103,7 +131,11 @@ const Carousel = () => {
           </LinkOverlay>
         </NextLink>
         <NextLink href={"/shop/pizza-patata"} passHref>
-          <LinkOverlay>
+          <LinkOverlay
+            role="group"
+            aria-roledescription="slide"
+            aria-label="8 of 8"
+          >
             <Box pos="relative" boxSize={width}>
               <Image
                 width={width}
