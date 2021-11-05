@@ -41,7 +41,7 @@ const Main = ({ children }: MainProps) => {
           bgPosition="center"
           bgRepeat="no-repeat"
         >
-          <Container as="main" maxW="container.lg" my={6}>
+          <Container as="main" maxW="container.lg" my={[0, 2]}>
             {children}
           </Container>
         </Flex>
