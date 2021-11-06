@@ -21,7 +21,7 @@ const ShopPageWithSlug: NextPage<ShopPageWithSlugProps> = ({
         <title>{title}</title>
       </Head>
 
-      <Product product={data} />
+      <Product product={data} mt={["0", "2rem", "3rem"]} />
     </>
   );
 };

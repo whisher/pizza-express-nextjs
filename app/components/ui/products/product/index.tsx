@@ -16,9 +16,10 @@ const productImageloader = ({ src, width, quality }: ImageLoaderProps) => {
 
 export interface ProductProps {
   product: ProductDto;
+  mt?: string[] | [""];
 }
 
-const Product = ({ product }: ProductProps) => {
+const Product = ({ product, mt }: ProductProps) => {
   const src = `/images/products/${product.image}`;
   const url = `/shop/${product.slug}`;
   const { id, image, name, price } = product;
@@ -35,6 +36,7 @@ const Product = ({ product }: ProductProps) => {
   };
   return (
     <Flex
+      mt={mt}
       direction={["column", "row"]}
       as="article"
       alignItems="center"
