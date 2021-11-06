@@ -47,7 +47,7 @@ const Menu = ({ onCloseDrawer }: MenuProps) => {
           Logout
         </Button>
       ) : (
-        <ButtonGroup spacing="4">
+        <ButtonGroup as="li" spacing="4">
           <NextLink href="/auth/login" passHref>
             <Button
               border="1px"

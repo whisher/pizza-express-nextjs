@@ -5,7 +5,7 @@ import { Box, LinkOverlay, useBreakpointValue } from "@chakra-ui/react";
 import { CarouselMain } from "./main";
 
 const Carousel = () => {
-  const width = useBreakpointValue({ base: "100", md: 200 });
+  const width = useBreakpointValue({ base: "100", md: 130, lg: 160 });
   const src = `/images/products/`;
   return (
     <Box mt="1rem">

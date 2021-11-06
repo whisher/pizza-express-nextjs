@@ -9,7 +9,7 @@ export interface CarouselMainProps {
 }
 
 const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
-  const width = useBreakpointValue({ base: "100", md: 200 });
+  const width = useBreakpointValue({ base: "100", md: 130, lg: 160 });
 
   const childrenLen = children ? (children as React.ReactNode[]).length : 0;
 
@@ -46,7 +46,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
           _hover={{ bg: "trasparent" }}
           _focus={{ bg: "trasparent" }}
           _active={{ bg: "trasparent" }}
-          aria-label="slider left"
+          aria-label="previous slide"
           aria-controls="carousel-bar"
           icon={<HiChevronLeft size="3rem" />}
         />
@@ -94,7 +94,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
           _hover={{ bg: "trasparent" }}
           _focus={{ bg: "trasparent" }}
           _active={{ bg: "trasparent" }}
-          aria-label="slider right"
+          aria-label="next slide"
           aria-controls="carousel-bar"
           icon={<HiChevronRight size="3rem" />}
         />
