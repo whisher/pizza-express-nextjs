@@ -12,7 +12,7 @@ const Heading = ({ children }: HeadingProps) => {
       fontSize={["3xl", "5xl"]}
       mb={2}
       color="white"
-      mt={{ base: "0", md: "3rem" }}
+      mt={{ base: "0", md: "1rem" }}
     >
       {children}
     </H>

@@ -8,7 +8,7 @@ const Carousel = () => {
   const width = useBreakpointValue({ base: "100", md: 130, lg: 160 });
   const src = `/images/products/`;
   return (
-    <Box mt="1rem">
+    <Box mt={["1rem", "2rem"]}>
       <CarouselMain numberToShow={3}>
         <NextLink href={"/shop/pizza-ai-funghi"} passHref>
           <LinkOverlay

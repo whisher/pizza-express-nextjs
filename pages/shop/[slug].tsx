@@ -20,6 +20,7 @@ const ShopPageWithSlug: NextPage<ShopPageWithSlugProps> = ({
       <Head>
         <title>{title}</title>
       </Head>
+
       <Product product={data} />
     </>
   );
