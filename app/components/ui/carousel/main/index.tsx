@@ -68,7 +68,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
             bg="white"
             w={[Number(width) * childrenLen]}
             h={width}
-            transition="all 250ms ease-in-out"
+            transition="all 250ms ease-out"
             style={{
               transform: `translateX(-${currentIndex * Number(width)}px)`
             }}

@@ -20,7 +20,6 @@ const GlobalStyles = css`
     background-color: #efefef;
     border-radius: 0.375rem;
   }
-
   .menu-item::before,
   .menu-item-active::before {
     content: "";

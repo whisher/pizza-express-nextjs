@@ -37,6 +37,7 @@ const getCategoriesWithProducts = async (
     });
     return res.status(200).json(categories);
   } catch (error) {
+    console.log("error", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
