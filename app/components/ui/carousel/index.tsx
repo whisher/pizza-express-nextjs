@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import NextLink from "next/link";
 import Image from "next/image";
 import { Box, LinkOverlay, useBreakpointValue } from "@chakra-ui/react";
@@ -7,7 +7,6 @@ import { CarouselMain } from "./main";
 const Carousel = () => {
   const width = useBreakpointValue({ base: "100", md: 130, lg: 160 });
   const src = `/images/products/`;
-  console.log("pippolo");
   return (
     <Box mt={["1rem", "2rem", "3rem"]}>
       <CarouselMain numberToShow={3}>
