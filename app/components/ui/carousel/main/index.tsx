@@ -10,8 +10,7 @@ export interface CarouselMainProps {
 
 const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
   const width = useBreakpointValue({ base: "100", md: 130, lg: 160 });
-
-  const childrenLen = children ? (children as React.ReactNode[]).length : 0;
+  const childrenLen = React.Children.count(children);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -39,7 +38,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
         left="0"
       >
         <IconButton
-          disabled={currentIndex < 1}
+          disabled={currentIndex <= 0}
           onClick={prev}
           bg="trasparent"
           color="white"
@@ -87,7 +86,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
         right="0"
       >
         <IconButton
-          disabled={currentIndex + numberToShow === childrenLen}
+          disabled={currentIndex >= childrenLen - numberToShow - 1}
           onClick={next}
           bg="trasparent"
           color="white"
