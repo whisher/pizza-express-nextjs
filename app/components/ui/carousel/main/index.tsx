@@ -86,7 +86,7 @@ const CarouselMain = ({ children, numberToShow }: CarouselMainProps) => {
         right="0"
       >
         <IconButton
-          disabled={currentIndex >= childrenLen - numberToShow - 1}
+          disabled={currentIndex > childrenLen - numberToShow - 1}
           onClick={next}
           bg="trasparent"
           color="white"
