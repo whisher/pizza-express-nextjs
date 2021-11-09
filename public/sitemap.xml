@@ -1,0 +1,11 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+      <loc>https://pizza-express-nextjs.vercel.app</loc>
+  </url>
+  <url>
+      <loc>https://pizza-express-nextjs.vercel.app/chi-siamo</loc>
+  </url>
+   <url>
+      <loc>https://pizza-express-nextjs.vercel.app/shop</loc>
+  </url>
+</urlset>

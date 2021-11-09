@@ -1,2 +1,2 @@
 User-agent: *
-Disallow:
+Sitemap: https://pizza-express-nextjs.vercel.app/sitemap.xml
