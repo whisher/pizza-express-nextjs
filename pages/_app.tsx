@@ -60,10 +60,6 @@ const PizzaExpressApp = ({
               name="description"
               content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
             />
-            <meta
-              name="viewport"
-              content="initial-scale=1.0, width=device-width"
-            />
           </Head>
           <Component {...pageProps} />
         </Layout>
